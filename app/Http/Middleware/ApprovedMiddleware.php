@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class ApprovedMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user() && auth()->user()->is_admin)
+        if (auth()->user() && auth()->user()->approved)
         {
             return $next($request);
         }
-        return abort(403, 'Accesso non autorizzato.');    }
+        return redirect()->route('approval.request');
+    }
 }

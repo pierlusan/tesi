@@ -31,9 +31,10 @@ Route::get('/approval-request', function () {
     return view('approval_request');
 })->middleware('auth')->name('approval.request');
 
-Route::get('/pending-users', [
-    AdminController::class, 'showPendingUsers'
-])->middleware(['auth', 'verified'])->name('admin.pending_users');
+Route::get('/pending-users', [AdminController::class, 'showPendingUsers'])
+    ->middleware(['auth', 'verified', 'is_admin'])
+    ->name('admin.pending_users');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

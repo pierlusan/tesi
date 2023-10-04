@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'approved'])->name('dashboard');
 
-
 Route::get('/approval-request', function () {
     return view('approval_request');
 })->middleware(['auth', 'approved.redirect'])->name('approval.request');
@@ -36,7 +36,9 @@ Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
     ->middleware(['auth', 'verified', 'is_admin'])
     ->name('admin.approve_user');
 
-
+Route::get('/groups/{group}', [GroupController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('groups.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('approved');

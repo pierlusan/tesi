@@ -17,6 +17,11 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
+                    @if (Auth::user()->is_admin)
+                        <x-nav-link :href="route('admin.pending_users')" :active="request()->routeIs('admin.pending_users')">
+                            {{ __('Gestione Utenti') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

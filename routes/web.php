@@ -27,11 +27,15 @@ Route::get('/dashboard', function () {
 
 Route::get('/approval-request', function () {
     return view('approval_request');
-})->middleware('auth')->name('approval.request');
+})->middleware(['auth', 'approved.redirect'])->name('approval.request');
 
 Route::get('/pending-users', [AdminController::class, 'showPendingUsers'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('admin.pending_users');
+Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
+    ->middleware(['auth', 'verified', 'is_admin'])
+    ->name('admin.approve_user');
+
 
 
 Route::middleware('auth')->group(function () {

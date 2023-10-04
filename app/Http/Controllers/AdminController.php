@@ -13,4 +13,15 @@ class AdminController extends Controller
             'users' => User::__all(),
         ]);
     }
+
+    public function approveUser(User $user)
+    {
+        if (!auth()->user()->is_admin)
+        {
+            abort(403, 'Accesso non autorizzato');
+        }
+        $user->update(['approved' => true]);
+        return redirect()->route('admin.pending_users')
+            ->with('success', 'Utente approvato con successo');
+    }
 }

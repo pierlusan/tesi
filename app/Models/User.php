@@ -51,4 +51,10 @@ class User extends Authenticatable
     {
         return static::where('approved', false)->get();
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
 }

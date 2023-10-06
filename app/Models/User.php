@@ -57,4 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class, 'group_user');
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->is_admin == true;
+    }
+
+
 }

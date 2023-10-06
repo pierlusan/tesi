@@ -3,7 +3,16 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-100">
-                    <h2 class="text-2xl font-semibold mb-4">I tuoi gruppi</h2>
+                    <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
+                        <h2 class="text-2xl font-semibold">I tuoi gruppi</h2>
+                        @if (Auth::user()->isAdmin())
+                            <form action="{{ route('groups.create') }}" method="GET">
+                                <x-primary-button href="{{ route('groups.create') }}">
+                                    Crea gruppo
+                                </x-primary-button>
+                            </form>
+                        @endif
+                    </div>
                     @if (count($groups) > 0)
                         <ul class="list-none space-y-4">
                             @foreach ($groups as $group)

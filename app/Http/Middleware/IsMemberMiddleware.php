@@ -18,7 +18,7 @@ class IsMemberMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $group = $request->route('group');
-        $userId = Auth::id(); //
+        $userId = Auth::id();
         //$group = Group::find($groupId);
         if ($group && $group->isMember($userId)) {
             return $next($request);

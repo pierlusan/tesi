@@ -36,6 +36,9 @@ Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
     ->middleware(['auth', 'verified', 'is_admin'])
     ->name('admin.approve_user');
 
+Route::get('/groups', [GroupController::class, 'index'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('groups.index');
 Route::get('/groups/{group}', [GroupController::class, 'show'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('groups.show');

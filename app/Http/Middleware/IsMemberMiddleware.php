@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Group;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsMemberMiddleware
@@ -16,16 +17,13 @@ class IsMemberMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $groupId = $request->route('group');
-        $user = $request->user();
-        $userGroups = $user->groups;
-        $isMember = $userGroups->contains('id', $groupId);
-        //dd($isMember);
-
-        if (!$isMember) {
-            abort(403, 'Accesso non autorizzato.');
+        $group = $request->route('group');
+        $userId = Auth::id(); //
+        //$group = Group::find($groupId);
+        if ($group && $group->isMember($userId)) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('dashboard');
     }
 
 }

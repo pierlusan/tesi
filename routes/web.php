@@ -37,7 +37,7 @@ Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
     ->name('admin.approve_user');
 
 Route::get('/groups/{group}', [GroupController::class, 'show'])
-    //->middleware(['auth', 'is_member'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('groups.show');
 
 Route::middleware('auth')->group(function () {

@@ -70,6 +70,6 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\AdminMiddleware::class,
         'approved' => \App\Http\Middleware\ApprovedMiddleware::class,
         'approved.redirect' => \App\Http\Middleware\RedirectIfApproved::class,
-
+        'is_member' => \App\Http\Middleware\IsMemberMiddleware::class,
     ];
 }

@@ -23,7 +23,7 @@
                     @if (Auth::user()->is_admin)
                         <x-nav-link :href="route('admin.pending_users')" :active="request()->routeIs('admin.pending_users')">
                             {{ __('Gestione Utenti') }}
-                            <span class="inline-block bg-indigo-700 text-white rounded-full px-1.5 ml-1" style="font-size: 0.65em">
+                            <span class="inline-block bg-gray-700 text-white rounded-full px-1.5 ml-1" style="font-size: 0.65em">
                                 {{ $pendingUsersCount }}
                             </span>
                         </x-nav-link>

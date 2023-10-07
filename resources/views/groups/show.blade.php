@@ -3,21 +3,21 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center content-center">
                         <h2 class="text-2xl font-semibold mb-2" id="group-name-display">{{ $group->name }}</h2>
                         @if (auth()->user()->isAdmin())
-                            <div class="ml-auto">
+                            <div class="ml-auto mt-auto">
                                 <button id="editGroupNameButton" class="bg-gray-600 hover:bg-gray-900 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
                                     Modifica
                                 </button>
-                                <button id="saveGroupName" class="bg-gray-600 hover:bg-gray-900 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase hidden">
-                                    Salva
-                                </button>
                             </div>
                         @endif
+                        <button id="saveGroupName" class="bg-gray-600 hover:bg-gray-900 text-white font-semibold mt-4 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
+                            Salva
+                        </button>
                     </div>
-                    <div class="hidden" id="editGroupNameForm">
-                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded p-1">
+                    <div class="hidden -mt-11" id="editGroupNameForm">
+                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded mb-2 p-1 text-xl mb-2">
                     </div>
 
 

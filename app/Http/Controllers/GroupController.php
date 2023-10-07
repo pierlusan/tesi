@@ -23,25 +23,33 @@ class GroupController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $users = User::where('approved', true)
+            ->where('is_admin', false)
+            ->orderBy('name', 'asc')
+            ->get();
         return view('groups.create', compact('users'));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        // Validazione dei dati del modulo
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'string|max:255',
-        ]);
-        $group = Group::create([
-            'name' => $validatedData['name'],
-            'description' => $validatedData['description'],
+            'users' => 'required|array',
         ]);
 
+        // Crea il gruppo
+        $group = new Group();
+        $group->name = $request->input('name');
+        $group->description = $request->input('description');
+        $group->save();
+
+        // Aggiungi gli utenti selezionati al gruppo
         $group->users()->attach(auth()->user());
-        $selectedUserIds = $request->input('selected_users', []);
-        $group->users()->attach($selectedUserIds);
+        $group->users()->attach($request->input('users'));
 
-        return redirect()->route('groups.index')->with('success', 'Gruppo creato con successo!');
+        // Altre operazioni o reindirizzamento a seconda delle tue esigenze
+        return redirect()->route('groups.index')->with('success', 'Gruppo creato con successo.');
     }
 }

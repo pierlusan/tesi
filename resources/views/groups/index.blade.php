@@ -18,7 +18,7 @@
                             @foreach ($groups as $group)
                                 <li>
                                     <a href="{{ route('groups.show', $group) }}" class="block p-4 border rounded-lg border-gray-200 hover:bg-gray-100">
-                                        <div class="mb-2">
+                                        <div class="mb-1">
                                             <span class="text-gray-900 font-semibold">{{ $group->name }}</span>
                                         </div>
                                         <div class="text-gray-600 text-sm">{{ $group->description }}</div>

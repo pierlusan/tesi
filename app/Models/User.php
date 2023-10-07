@@ -47,11 +47,6 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
-    public static function __all()
-    {
-        return static::where('approved', false)->get();
-    }
-
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_user');
@@ -62,5 +57,9 @@ class User extends Authenticatable
         return $this->is_admin == true;
     }
 
+    public static function pendingUsers()
+    {
+        return static::where('approved', false)->orderBy('created_at', 'desc')->get();
+    }
 
 }

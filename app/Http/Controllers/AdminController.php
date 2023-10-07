@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function showPendingUsers()
     {
         return view('pending_users',[
-            'users' => User::__all(),
+            'users' => User::pendingUsers(),
         ]);
     }
 

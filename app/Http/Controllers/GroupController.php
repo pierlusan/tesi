@@ -52,4 +52,17 @@ class GroupController extends Controller
         // Altre operazioni o reindirizzamento a seconda delle tue esigenze
         return redirect()->route('groups.index')->with('success', 'Gruppo creato con successo.');
     }
+
+    public function updateName(Request $request, Group $group)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $group->update([
+            'name' => $request->input('name'),
+        ]);
+        return response()->json(['message' => 'Nome del gruppo aggiornato con successo']);
+    }
+
+
 }

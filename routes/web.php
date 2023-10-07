@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,15 +20,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('guest');
+})->middleware('guest')
+    ->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'approved'])->name('dashboard');
+Route::get('/dashboard', [Controller::class, 'dashboard'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('dashboard');
 
 Route::get('/approval-request', function () {
     return view('approval_request');
-})->middleware(['auth', 'approved.redirect'])->name('approval.request');
+})->middleware(['auth', 'approved.redirect'])
+    ->name('approval.request');
 
 Route::get('/pending-users', [AdminController::class, 'showPendingUsers'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])

@@ -4,7 +4,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-semibold mb-2" id="group-name-display">{{ $group->name }}</h2>
+                        <h2 class="text-2xl font-semibold mb-2" id="groupName">{{ $group->name }}</h2>
                         @if (auth()->user()->isAdmin())
                             <div class="ml-auto">
                                 <button id="editGroupNameButton" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
@@ -20,7 +20,7 @@
                         </button>
                     </div>
                     <div class="hidden -mt-8" id="editGroupNameForm">
-                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded mb-2 p-1 text-xl mb-2">
+                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded mb-2 p-1 text-xl">
                     </div>
 
 
@@ -51,6 +51,7 @@
 </x-app-layout>
 
 <script>
-    let groupId = {{ $group->id }}
+    var groupId = {{ $group->id }};
+    var csrfToken = '{{ csrf_token() }}'
 </script>
 @vite('resources/js/edit-group-name.js')

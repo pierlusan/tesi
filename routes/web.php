@@ -51,12 +51,9 @@ Route::get('/groups-create', [GroupController::class, 'create'])
 Route::post('/groups', [GroupController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.store');
-Route::put('/groups/{group}', [GroupController::class, 'updateName'])
+Route::put('/groups/{group}', [GroupController::class, 'edit'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
-    ->name('groups.update_name');
-
-
-
+    ->name('groups.edit');
 
 
 Route::middleware('auth')->group(function () {

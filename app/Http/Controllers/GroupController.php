@@ -32,35 +32,39 @@ class GroupController extends Controller
 
     public function store(Request $request)
     {
-        // Validazione dei dati del modulo
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'string|max:255',
             'users' => 'required|array',
         ]);
 
-        // Crea il gruppo
         $group = new Group();
         $group->name = $request->input('name');
         $group->description = $request->input('description');
         $group->save();
 
-        // Aggiungi gli utenti selezionati al gruppo
         $group->users()->attach(auth()->user());
         $group->users()->attach($request->input('users'));
 
-        // Altre operazioni o reindirizzamento a seconda delle tue esigenze
         return redirect()->route('groups.index')->with('success', 'Gruppo creato con successo.');
     }
 
-    public function updateName(Request $request, Group $group)
+    public function edit(Request $request, Group $group)
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'string|max:255',
         ]);
-        $group->update([
-            'name' => $request->input('name'),
-        ]);
+        if ($request->has('name')) {
+            $group->update([
+                'name' => $request->input('name'),
+            ]);
+        }
+        if ($request->has('description')) {
+            $group->update([
+                'description' => $request->input('description'),
+            ]);
+        }
         return response()->json(['message' => 'Nome del gruppo aggiornato con successo']);
     }
 

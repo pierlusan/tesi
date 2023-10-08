@@ -7,12 +7,12 @@
                         <h2 class="text-2xl font-semibold mb-2" id="groupName">{{ $group->name }}</h2>
                         @if (auth()->user()->isAdmin())
                             <div class="ml-auto">
-                                <button id="editGroupNameButton" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
+                                <button id="editGroupButton" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
                                     Modifica
                                 </button>
                             </div>
                         @endif
-                        <button id="saveGroupName" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-2 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
+                        <button id="saveEdit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-2 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
                             Salva
                         </button>
                         <button id="cancelEdit" class="bg-red-600 hover:bg-red-700 text-white font-semibold mt-2 ml-2 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
@@ -23,14 +23,15 @@
                         <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded mb-2 p-1 text-xl">
                     </div>
 
-
-
-                    <p class="text-gray-600 mb-4">
+                    <p id="groupDesc" class="text-gray-600 text-base mb-4">
                         {{ $group->description }}
                     </p>
+                    <div class="hidden" id="editGroupDescForm">
+                        <input type="text" id="newGroupDesc" value="{{ $group->description }}" class="border rounded mb-2 pl-1 py-0.5 text-base">
+                    </div>
 
 
-                    <p class="text-gray-600 mb-4">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
+                    <p class="text-gray-600 text-sm mb-4">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
                     <h3 class="text-lg font-semibold mb-2">Membri del Gruppo</h3>
                     <ul>
                         @foreach ($group->users as $user)
@@ -52,6 +53,7 @@
 
 <script>
     var groupId = {{ $group->id }};
-    var csrfToken = '{{ csrf_token() }}'
+    var groupDesc = '{{ $group->description }}';
+    var csrfToken = '{{ csrf_token() }}';
 </script>
-@vite('resources/js/edit-group-name.js')
+@vite('resources/js/edit-group.js')

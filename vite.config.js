@@ -8,7 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/multiselect.js',
-                'resources/js/edit-group-name.js',
+                'resources/js/edit-group.js',
             ],
             refresh: true,
         }),

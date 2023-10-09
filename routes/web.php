@@ -68,6 +68,9 @@ Route::delete('/groups/{group}', [GroupController::class, 'destroy'])
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.index');
+Route::get('/groups/{group}/posts/{post}', [PostController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('posts.show');
 
 
 Route::middleware('auth')->group(function () {

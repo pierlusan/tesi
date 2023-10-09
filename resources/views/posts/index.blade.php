@@ -6,7 +6,11 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
                         <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
-                        <x-primary-button>Nuovo Post</x-primary-button>
+                        @if (auth()->user()->isAdmin())
+                        <form action="{{ route('posts.create', ['group' => $group]) }}" method="GET">
+                            <x-primary-button>Nuovo Post</x-primary-button>
+                        </form>
+                        @endif
                     </div>
                     @if ($posts->count() > 0)
                         <ul class="space-y-4">

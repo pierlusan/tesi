@@ -7,7 +7,7 @@
                         <h2 class="text-2xl font-semibold">I tuoi gruppi</h2>
                         @if (Auth::user()->isAdmin())
                             <form action="{{ route('groups.create') }}" method="GET">
-                                <x-primary-button href="{{ route('groups.create') }}">
+                                <x-primary-button>
                                     Crea gruppo
                                 </x-primary-button>
                             </form>

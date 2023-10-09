@@ -71,6 +71,12 @@ Route::get('/groups/{group}/posts', [PostController::class, 'index'])
 Route::get('/groups/{group}/posts/{post}', [PostController::class, 'show'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.show');
+Route::get('/groups/{group}/posts-create', [PostController::class, 'create'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member', 'is_admin'])
+    ->name('posts.create');
+Route::post('/groups/{group}/posts', [PostController::class, 'store'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('posts.store');
 
 
 Route::middleware('auth')->group(function () {

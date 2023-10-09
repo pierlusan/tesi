@@ -10,7 +10,9 @@
                     </div>
                     <p class="text-gray-700">{{ $post->content }}</p>
                     <div class="mt-4">
-                        <p class="text-sm text-gray-400 -mb-1">Scritto da {{ $post->user->name }}</p>
+                        <p class="text-sm text-gray-400 -mb-1">Scritto da {{ $post->user->name }} in
+                            <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-500 hover:text-gray-800">{{ $post->group->name }}</a>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -2,10 +2,25 @@
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="bg-gray-100 px-4 py-2 flex justify-center space-x-4">
-                    <x-nav-link :href="route('groups.show', ['group' => $group])" :active="request()->routeIs('dashboard')">{{ __('Home') }}</x-nav-link>
-                    <a href="{{ route('dashboard') }}" class="text-blue-600 hover:underline">Pagina Principale</a>
+                <div class="bg-gray-500 px-8 pb-1 pt-3 border-b border-gray-300 flex justify-left space-x-4">
+                    <x-nav-link-group :href="route('groups.show', ['group' => $group])"
+                                :active="request()->routeIs('groups.show')">
+                        {{ __('Home') }}
+                    </x-nav-link-group>
+                    <x-nav-link-group :href="route('dashboard')"
+                                      :active="request()->routeIs('dashboard')">
+                        {{ __('Post') }}
+                    </x-nav-link-group>
                 </div>
+
+                <!--
+                <div class="bg-gray-200 border-b border-gray-400">
+                    <div class="flex items-center justify-between px-4 py-2">
+                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md transition duration-300">Pagina 1</a>
+                        <a href="{{ route('groups.index') }}" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md transition duration-300">Pagina 2</a>
+                    </div>
+                </div>
+                -->
 
                 <div class="p-6 bg-white border-b border-gray-200">
 

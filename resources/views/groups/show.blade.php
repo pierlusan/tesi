@@ -20,14 +20,14 @@
                         </button>
                     </div>
                     <div class="hidden -mt-8" id="editGroupNameForm">
-                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border rounded mb-2 p-1 text-xl">
+                        <input type="text" id="newGroupName" value="{{ $group->name }}" class="border-gray-300 font-semibold focus:border-indigo-500 focus:ring-indigo-500 shadow-sm border rounded mb-2 pl-3 p-1 text-xl">
                     </div>
 
                     <p id="groupDesc" class="text-gray-600 text-base mb-4">
                         {{ $group->description }}
                     </p>
                     <div class="hidden" id="editGroupDescForm">
-                        <input type="text" id="newGroupDesc" value="{{ $group->description }}" class="border rounded mb-2 pl-1 py-0.5 text-base">
+                        <textarea id="newGroupDesc" class="h-32 mt-1 mb-4 w-full text-gray-600 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ $group->description }}</textarea>
                     </div>
 
                     <form method="POST" action="{{ route('groups.add', ['group' => $group]) }}">
@@ -56,7 +56,7 @@
                                     <form method="POST" action="{{ route('groups.remove', ['group' => $group, 'user' => $user]) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="mr-2 text-red-500 hover:bg-gray-200 hover:text-red-700 hover:rounded">
+                                        <button type="submit" class="mr-2 text-red-500 hover:text-red-700 hover:rounded" onclick="confirmRemove({{ $user->id }})">
                                             <x-feathericon-x />
                                         </button>
                                     </form>
@@ -77,8 +77,17 @@
     </div>
 </x-app-layout>
 
-<script>
 
+<script>
+    function confirmRemove(userId) {
+        var conferma = confirm(`Sei sicuro di voler rimuovere questo utente?`);
+        if (conferma) {
+            document.querySelector(`form[action="/groups/{{ $group->id }}/remove-user/${userId}"]`).submit();
+        }
+        else {
+            event.preventDefault();
+        }
+    }
 </script>
 
 <script>
@@ -86,4 +95,8 @@
     var groupDesc = '{{ $group->description }}';
     var csrfToken = '{{ csrf_token() }}';
 </script>
-@vite(['resources/js/edit-group.js', 'resources/js/multiselect.js'])
+
+@vite([
+    'resources/js/edit-group.js',
+    'resources/js/multiselect.js',
+])

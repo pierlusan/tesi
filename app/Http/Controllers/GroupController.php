@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        $groups = $user->groups;
+        return view('groups.index', compact('groups'));
+    }
+
     public function show(Group $group)
     {
         $groupId = $group->id;
@@ -16,13 +23,6 @@ class GroupController extends Controller
             $query->where('group_id', $groupId);
         })->get();
         return view('groups.show', ['group' => $group, 'users' => $usersNotInGroup]);
-    }
-
-    public function index()
-    {
-        $user = Auth::user();
-        $groups = $user->groups;
-        return view('groups.index', compact('groups'));
     }
 
     public function create()

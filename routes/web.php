@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,10 +62,12 @@ Route::delete('/groups/{group}/remove-user/{user}', [GroupController::class, 're
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.remove');
 Route::delete('/groups/{group}', [GroupController::class, 'destroy'])
-    ->middleware(['auth', 'verified', 'approved'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.destroy');
 
-
+Route::get('/groups/{group}/posts', [PostController::class, 'index'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('posts.index');
 
 
 Route::middleware('auth')->group(function () {

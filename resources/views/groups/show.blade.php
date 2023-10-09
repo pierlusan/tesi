@@ -7,23 +7,13 @@
                                 :active="request()->routeIs('groups.show')">
                         {{ __('Home') }}
                     </x-nav-link-group>
-                    <x-nav-link-group :href="route('dashboard')"
-                                      :active="request()->routeIs('dashboard')">
+                    <x-nav-link-group :href="route('posts.index', ['group' => $group])"
+                                      :active="request()->routeIs('posts.index')">
                         {{ __('Post') }}
                     </x-nav-link-group>
                 </div>
 
-                <!--
-                <div class="bg-gray-200 border-b border-gray-400">
-                    <div class="flex items-center justify-between px-4 py-2">
-                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md transition duration-300">Pagina 1</a>
-                        <a href="{{ route('groups.index') }}" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md transition duration-300">Pagina 2</a>
-                    </div>
-                </div>
-                -->
-
                 <div class="p-6 bg-white border-b border-gray-200">
-
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-semibold mb-2" id="groupName">{{ $group->name }}</h2>
                         @if (auth()->user()->isAdmin())

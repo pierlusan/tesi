@@ -6,7 +6,6 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-1 -mt-1 flex justify-between items-center">
                         <h2 class="text-lg font-semibold">{{ $post->title }}</h2>
-                        <x-primary-button>Nuovo Post</x-primary-button>
                         <p class="text-gray-600 text-xs">{{ $post->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                     <p class="text-gray-700">{{ $post->content }}</p>

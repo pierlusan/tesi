@@ -6,8 +6,8 @@
                     <h2 class="text-2xl font-semibold mb-4">Utenti in attesa di approvazione</h2>
                     <ul>
                         @foreach ($users as $user)
-                            <li class="mb-2 border-b border-gray-300 pb-2 hover:bg-gray-100 hover:rounded">
-                                <div class="flex justify-between items-center mx-2">
+                            <li class="border-b border-gray-300 pb-2 hover:bg-gray-100 hover:rounded">
+                                <div class="flex justify-between items-center mx-2 pt-2">
                                     <div>
                                         <span class="font-semibold">{{ $user->name }}</span><br>
                                         <span class="text-gray-600">{{ $user->email }}</span>
@@ -16,7 +16,7 @@
                                         <form method="POST" action="{{ route('admin.approve_user', ['user' => $user]) }}">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-semibold py-1 px-2 rounded shadow-md text-sm uppercase">
+                                            <button type="submit" class="inline-flex items-center px-3 py-1.5 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                                 Approva
                                             </button>
                                         </form>

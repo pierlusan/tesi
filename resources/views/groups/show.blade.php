@@ -8,15 +8,16 @@
                         <h2 class="text-2xl font-semibold mb-2" id="groupName">{{ $group->name }}</h2>
                         @if (auth()->user()->isAdmin())
                             <div class="ml-auto">
-                                <button id="editGroupButton" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
+                                <button id="editGroupButton" class="inline-flex items-center px-4 py-2 mb-3.5 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" >
+                                <!--<button id="editGroupButton" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">-->
                                     Modifica
                                 </button>
                             </div>
                         @endif
-                        <button id="saveEdit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-2 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
+                        <button id="saveEdit" class="items-center px-4 py-1.5 mt-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 hidden">
                             Salva
                         </button>
-                        <button id="cancelEdit" class="bg-red-600 hover:bg-red-700 text-white font-semibold mt-2 ml-2 py-1 px-2 rounded shadow-md text-xs uppercase hidden">
+                        <button id="cancelEdit" class="items-center px-4 py-2 ml-2.5 mt-1.5 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:bg-red-500 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 hidden">
                             Annulla
                         </button>
                     </div>
@@ -36,7 +37,7 @@
                         <div class="flex justify-between items-center mb-3">
                             <h3 class="text-lg font-semibold mb-2 mt-4">Membri del Gruppo ({{ $group->users->count() }})</h3>
                             @if (auth()->user()->isAdmin() && $users->count())
-                                <button type="submit" id="addUser" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold mb-3.5 py-1 px-2 rounded shadow-md text-xs uppercase">
+                                <button type="submit" id="addUser" class="items-center px-4 py-2 ml-2 mt-2 bg-sky-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-sky-500 focus:bg-sky-500 active:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Aggiungi
                                 </button>
                             @endif
@@ -57,7 +58,7 @@
                                     <form method="POST" action="{{ route('groups.remove', ['group' => $group, 'user' => $user]) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="mr-2 text-red-500 hover:text-red-700 hover:rounded" onclick="confirmRemove({{ $user->id }})">
+                                        <button type="submit" class="mr-2 text-red-700 hover:text-red-500 hover:rounded" onclick="confirmRemove({{ $user->id }})">
                                             <x-feathericon-x />
                                         </button>
                                     </form>
@@ -75,7 +76,7 @@
                         <p class="text-gray-600 text-sm">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
                         <form id="deleteGroupForm" method="POST" action="{{ route('groups.destroy', $group) }}">
                             @if (auth()->user()->isAdmin())
-                                <button type="submit" id="deleteGroup" onclick="confirmDelete()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
+                                <button type="submit" id="deleteGroup" onclick="confirmDelete()" class="items-center px-4 py-2 ml-2 mt-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:bg-red-500 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Elimina Gruppo
                                 </button>
                             @endif

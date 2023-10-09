@@ -4,7 +4,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <x-group-menu :group="$group" />
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
+                    <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
+                        <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
+                        <x-primary-button>Nuovo Post</x-primary-button>
+                    </div>
                     @if ($posts->count() > 0)
                         <ul class="space-y-4">
                             @foreach ($posts as $post)

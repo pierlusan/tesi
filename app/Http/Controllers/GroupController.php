@@ -87,4 +87,10 @@ class GroupController extends Controller
         return redirect()->route('groups.show', $group)->with('success', 'Utente rimosso con successo dal gruppo');
     }
 
+    public function destroy(Group $group)
+    {
+        $group->delete();
+        return redirect()->route('groups.index')->with('success', 'Gruppo eliminato con successo.');
+    }
+
 }

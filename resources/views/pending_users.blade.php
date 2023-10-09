@@ -6,8 +6,8 @@
                     <h2 class="text-2xl font-semibold mb-4">Utenti in attesa di approvazione</h2>
                     <ul>
                         @foreach ($users as $user)
-                            <li class="mb-2 border-b border-gray-300 pb-2">
-                                <div class="flex justify-between items-center">
+                            <li class="mb-2 border-b border-gray-300 pb-2 hover:bg-gray-100 hover:rounded">
+                                <div class="flex justify-between items-center mx-2">
                                     <div>
                                         <span class="font-semibold">{{ $user->name }}</span><br>
                                         <span class="text-gray-600">{{ $user->email }}</span>

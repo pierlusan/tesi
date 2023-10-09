@@ -21,8 +21,10 @@
                                         <div class="mb-1">
                                             <span class="text-gray-900 font-semibold">{{ $group->name }}</span>
                                         </div>
-                                        <div class="text-gray-600 text-sm">{{ $group->description }}</div>
-                                        <div class="text-gray-400 text-xs">Creato il {{ $group->created_at->format('d/m/Y') }}</div>
+                                        <div class="text-gray-600 text-sm">
+                                            {{ strlen($group->description) > 400 ? substr($group->description, 0, 400) . '...' : $group->description }}
+                                        </div>
+                                        <div class="text-gray-400 text-xs mt-2">Creato il {{ $group->created_at->format('d/m/Y') }}</div>
                                     </a>
                                 </li>
                             @endforeach

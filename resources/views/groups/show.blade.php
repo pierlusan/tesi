@@ -70,7 +70,18 @@
                             </li>
                         @endforeach
                     </ul>
-                    <p class="text-gray-600 text-sm border-t-2 border-gray-300 pt-3 mt-6">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
+                    <div class="flex justify-between items-center border-t-2 border-gray-300 pt-3 mt-6">
+                        <p class="text-gray-600 text-sm">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
+                        <form id="deleteGroupForm" method="POST" action="{{ route('groups.destroy', $group) }}">
+                            @if (auth()->user()->isAdmin())
+                                <button type="submit" id="deleteGroup" onclick="confirmDelete()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded shadow-md text-xs uppercase">
+                                    Elimina Gruppo
+                                </button>
+                            @endif
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,6 +94,18 @@
         var conferma = confirm(`Sei sicuro di voler rimuovere questo utente?`);
         if (conferma) {
             document.querySelector(`form[action="/groups/{{ $group->id }}/remove-user/${userId}"]`).submit();
+        }
+        else {
+            event.preventDefault();
+        }
+    }
+</script>
+
+<script>
+    function confirmDelete() {
+        var conferma = confirm(`ATTENZIONE: Procedendo il gruppo verrà eliminato e tutti i dati saranno persi definitivamente`);
+        if (conferma) {
+            document.querySelector(`form[action="/groups/{{ $group->id }}"]`).submit();
         }
         else {
             event.preventDefault();

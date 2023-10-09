@@ -60,6 +60,10 @@ Route::post('/groups/{group}/add', [GroupController::class, 'add'])
 Route::delete('/groups/{group}/remove-user/{user}', [GroupController::class, 'remove'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.remove');
+Route::delete('/groups/{group}', [GroupController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('groups.destroy');
+
 
 
 

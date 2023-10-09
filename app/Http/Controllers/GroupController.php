@@ -81,5 +81,10 @@ class GroupController extends Controller
         return redirect()->route('groups.show', ['group' => $group])->with('success', 'Utenti aggiunti con successo al gruppo.');
     }
 
+    public function remove(Group $group, User $user)
+    {
+        $group->users()->detach($user->id);
+        return redirect()->route('groups.show', $group)->with('success', 'Utente rimosso con successo dal gruppo');
+    }
 
 }

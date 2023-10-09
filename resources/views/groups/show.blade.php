@@ -51,8 +51,17 @@
 
                     <ul class="mt-4">
                         @foreach ($group->users as $user)
-                            <li class="mb-2">
-                                <div class="flex justify-between items-center">
+                            <li class="mb-2 flex items-center">
+                                @if (auth()->user()->isAdmin() && !$user->isAdmin())
+                                    <form method="POST" action="{{ route('groups.remove', ['group' => $group, 'user' => $user]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 mr-2">
+                                            <x-feathericon-x />
+                                        </button>
+                                    </form>
+                                @endif
+                                <div>
                                     <div>
                                         <span class="font-semibold">{{ $user->name }}</span> -
                                         <span class="text-gray-600">{{ $user->email }}</span>

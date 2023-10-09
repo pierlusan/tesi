@@ -55,8 +55,12 @@ Route::put('/groups/{group}', [GroupController::class, 'edit'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.edit');
 Route::post('/groups/{group}/add', [GroupController::class, 'add'])
-    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.add');
+Route::delete('/groups/{group}/remove-user/{user}', [GroupController::class, 'remove'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('groups.remove');
+
 
 
 Route::middleware('auth')->group(function () {

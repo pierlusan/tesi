@@ -23,4 +23,5 @@ class Group extends Model
     {
         return $this->users()->where('user_id', $userId)->exists();
     }
+
 }

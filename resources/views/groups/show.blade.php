@@ -30,10 +30,26 @@
                         <input type="text" id="newGroupDesc" value="{{ $group->description }}" class="border rounded mb-2 pl-1 py-0.5 text-base">
                     </div>
 
+                    <form method="POST" action="{{ route('groups.add', ['group' => $group]) }}">
+                        @csrf
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-semibold mb-2 mt-4">Membri del Gruppo ({{ $group->users->count() }})</h3>
+                            @if (auth()->user()->isAdmin() && $users->count())
+                                <button type="submit" id="addUser" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold mb-3.5 py-1 px-2 rounded shadow-md text-xs uppercase">
+                                    Aggiungi
+                                </button>
+                            @endif
+                        </div>
+                        @if (auth()->user()->isAdmin() && $users->count())
+                            <select multiple name="users[]" id="users" multiple multiselect-search="true" multiselect-select-all="true" multiselect-max-items="4" onchange="console.log(this.selectedOptions)"  class="mt-1 hidden w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        @endif
+                    </form>
 
-                    <p class="text-gray-600 text-sm mb-4">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
-                    <h3 class="text-lg font-semibold mb-2">Membri del Gruppo</h3>
-                    <ul>
+                    <ul class="mt-4">
                         @foreach ($group->users as $user)
                             <li class="mb-2">
                                 <div class="flex justify-between items-center">
@@ -45,6 +61,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    <p class="text-gray-600 text-sm border-t-2 border-gray-300 pt-3 mt-6">Data di Creazione: {{ $group->created_at->format('d/m/Y') }}</p>
                 </div>
             </div>
         </div>
@@ -52,8 +69,12 @@
 </x-app-layout>
 
 <script>
+
+</script>
+
+<script>
     var groupId = {{ $group->id }};
     var groupDesc = '{{ $group->description }}';
     var csrfToken = '{{ csrf_token() }}';
 </script>
-@vite('resources/js/edit-group.js')
+@vite(['resources/js/edit-group.js', 'resources/js/multiselect.js'])

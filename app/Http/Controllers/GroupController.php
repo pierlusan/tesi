@@ -11,7 +11,11 @@ class GroupController extends Controller
 {
     public function show(Group $group)
     {
-        return view('groups.show', compact('group'));
+        $groupId = $group->id;
+        $usersNotInGroup = User::whereDoesntHave('groups', function ($query) use ($groupId) {
+            $query->where('group_id', $groupId);
+        })->get();
+        return view('groups.show', ['group' => $group, 'users' => $usersNotInGroup]);
     }
 
     public function index()
@@ -46,7 +50,7 @@ class GroupController extends Controller
         $group->users()->attach(auth()->user());
         $group->users()->attach($request->input('users'));
 
-        return redirect()->route('groups.index')->with('success', 'Gruppo creato con successo.');
+        return redirect()->route('groups.show', ['group' => $group->id])->with('success', 'Gruppo creato con successo.');
     }
 
     public function edit(Request $request, Group $group)
@@ -66,6 +70,15 @@ class GroupController extends Controller
             ]);
         }
         return response()->json(['message' => 'Nome del gruppo aggiornato con successo']);
+    }
+
+    public function add(Request $request, Group $group)
+    {
+        $request->validate([
+            'users' => 'required|array',
+        ]);
+        $group->users()->attach($request->input('users'));
+        return redirect()->route('groups.show', ['group' => $group])->with('success', 'Utenti aggiunti con successo al gruppo.');
     }
 
 

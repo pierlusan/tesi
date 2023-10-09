@@ -7,7 +7,6 @@
 
                     <form method="POST" action="{{ route('groups.store') }}">
                         @csrf
-
                         <div class="mb-4">
                             <x-input-label for="name" :value="__('Nome del gruppo')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
@@ -21,7 +20,7 @@
                         </select>
 
                         <div class="mb-4">
-                            <x-input-label for="description" class="mt-3" :value="__('Descrizione')" />
+                            <x-input-label for="description" class="mt-1" :value="__('Descrizione')" />
                             <textarea id="description" class="block h-32 mt-1 mb-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ old('description') }}</textarea>
                         </div>
 

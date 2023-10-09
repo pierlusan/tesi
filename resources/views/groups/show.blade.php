@@ -24,7 +24,7 @@
                         <input type="text" id="newGroupName" value="{{ $group->name }}" class="border-gray-300 font-semibold focus:border-indigo-500 focus:ring-indigo-500 shadow-sm border rounded mb-2 pl-3 p-1 text-xl">
                     </div>
 
-                    <p id="groupDesc" class="text-gray-600 text-base mb-4">
+                    <p id="groupDesc" class="text-gray-500 text-base mb-4">
                         {{ $group->description }}
                     </p>
                     <div class="hidden" id="editGroupDescForm">

@@ -19,6 +19,11 @@ class Group extends Model
         return $this->belongsToMany(User::class, 'group_user');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function isMember($userId)
     {
         return $this->users()->where('user_id', $userId)->exists();

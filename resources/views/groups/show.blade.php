@@ -56,7 +56,7 @@
                                     <form method="POST" action="{{ route('groups.remove', ['group' => $group, 'user' => $user]) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 mr-2">
+                                        <button type="submit" class="mr-2 text-red-500 hover:bg-gray-200 hover:text-red-700 hover:rounded">
                                             <x-feathericon-x />
                                         </button>
                                     </form>

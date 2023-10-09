@@ -38,7 +38,7 @@ class GroupController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'users' => 'required|array',
         ]);
 
@@ -57,7 +57,7 @@ class GroupController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
         if ($request->has('name')) {
             $group->update([

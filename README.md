@@ -1,66 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Guida all'installazione
+**IMPORTANTE:** Prima di iniziare, assicurati di avere i seguenti requisiti installati sul tuo computer:
+1. **Git**: Se non hai Git installato, puoi scaricarlo da [questo link](https://git-scm.com/downloads).
+2. **Node.js** & **npm**: Node.js è un runtime JavaScript e npm è il gestore di pacchetti di Node.js. Puoi scaricarli da [questo link](https://nodejs.org/). Assicurati di avere npm incluso nell'installazione di Node.js.
+3. **Composer**: Composer è un gestore di dipendenze per PHP. Puoi scaricarlo da [questo link](https://getcomposer.org/).
+4. **MySQL**: Il nostro progetto utilizza MySQL come sistema di gestione del database. Assicurati di avere MySQL installato e configurato sul tuo sistema. Puoi scaricare MySQL da [questo link](https://dev.mysql.com/downloads/).
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Setup dell'applicazione:
+1. **Clona il repository**: Apri il tuo terminale o prompt dei comandi e esegui il seguente comando per clonare il repository da GitHub:
+   ```bash
+   git clone https://github.com/cianf4/test.git
+   ```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Entra nella directory del progetto**: Vai nella directory del progetto appena clonato con il comando:
+   ```bash
+   cd test
+   ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. **Installazione delle dipendenze PHP**: Esegui il seguente comando per installare le dipendenze PHP del progetto utilizzando Composer:
+   ```bash
+   composer install
+   ```
 
-## Learning Laravel
+4. **Installazione delle dipendenze JavaScript**: Esegui il seguente comando per installare le dipendenze JavaScript del progetto utilizzando npm:
+   ```bash
+   npm install
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. **Crea il file di ambiente**: Crea un file di ambiente `.env` per configurare le variabili d'ambiente del progetto. Copia il file `.env.example` tramite il seguente comando:
+   ```bash
+   cp .env.example .env
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+6. **Configura il file di ambiente**: Modifila il file di ambiente `.env` secondo le tue esigenze. In particolare le linee di codice associate all'accesso al database:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=test
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+7. **Genera la chiave dell'app**: Esegui il seguente comando per generare una chiave segreta per l'applicazione:
+   ```bash
+   php artisan key:generate
+   ```
+8. **Esegui le Migrazioni del Database**: Per creare le tabelle del database, esegui:
+   ```bash
+   php artisan migrate
+   ```
 
-## Laravel Sponsors
+### Run dell'applicazione:
+1. **Compila le risorse front-end**: Esegui il seguente comando per avviare il processo di compilazione delle risorse front-end del progetto:
+   ```bash
+   npm run dev
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Avvia il Server**: Ora puoi avviare il server locale:
+   ```bash
+   php artisan serve
+   ```
+3. **Accedi al progetto**: Una volta eseguiti tutti i passi, sarà possibile accedere al progetto tramite browser dall'indirizzo `http://127.0.0.1:8000`.

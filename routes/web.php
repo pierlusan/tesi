@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
@@ -77,6 +78,12 @@ Route::get('/groups/{group}/posts-create', [PostController::class, 'create'])
 Route::post('/groups/{group}/posts', [PostController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('posts.store');
+
+
+Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('comments.store');
+
 
 
 Route::middleware('auth')->group(function () {

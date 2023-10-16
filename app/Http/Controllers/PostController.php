@@ -18,11 +18,12 @@ class PostController extends Controller
     {
         $postId = $post->id;
         $groupId = $group->id;
+        $comments = $post->comments()->get();
         $post = Post::where('group_id', $groupId)->where('id', $postId)->first();
         if (!$post) {
             abort(404);
         }
-        return view('posts.show', ['post' => $post, 'group' => $group]);
+        return view('posts.show', ['post' => $post, 'group' => $group, 'comments' => $comments]);
     }
 
     public function create(Group $group)

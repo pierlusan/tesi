@@ -2,7 +2,15 @@
 
 <div class="px-auto p-4 border rounded-lg border-gray-200 mt-4 shadow-md @if (auth()->check() && auth()->user()->id === $comment->user_id) bg-gray-100 hover:bg-white @else bg-white @endif">
     <div class="flex justify-between items-center -mt-1 mb-2">
-        <p class="text-sm text-gray-500">{{ $comment->author->name }}</p>
+        @if (auth()->check() && auth()->user()->id === $comment->user_id)
+            <p class="text-sm font-semibold text-gray-900">
+                {{ $comment->author->name }}
+            </p>
+        @else
+            <p class="text-sm text-gray-500">
+                {{ $comment->author->name }}
+            </p>
+        @endif
         <p class="text-gray-400 text-xs">{{ $comment->created_at->format('d/m/Y H:i') }}</p>
     </div>
     <p class="text-gray-700">{{ $comment->content }}</p>

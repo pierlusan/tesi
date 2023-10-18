@@ -19,14 +19,15 @@
 
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">
-                <h3 class="text-2xl font-semibold mb-4 my-4">Commenti</h3>
-                <h3 class="text-lg font-semibold">Aggiungi un Commento</h3>
                 <form method="POST" action="{{ route('comments.store', ['group' => $group, 'post' => $post]) }}">
                     @csrf
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-semibold mb-4 my-4">Commenti</h3>
+                        <x-primary-button type="submit">
+                            Commenta
+                        </x-primary-button>
+                    </div>
                     <textarea name="content" id="content" rows="4" class="w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Inserisci il tuo commento" required></textarea>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded shadow-md text-sm uppercase">
-                        Aggiungi Commento
-                    </button>
                 </form>
                 @foreach($comments as $comment)
                         <x-comment :comment="$comment" />

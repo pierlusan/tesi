@@ -81,7 +81,7 @@ Route::post('/groups/{group}/posts', [PostController::class, 'store'])
 
 
 Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
-    ->middleware(['auth', 'verified', 'approved'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.store');
 
 

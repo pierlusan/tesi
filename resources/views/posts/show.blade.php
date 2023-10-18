@@ -27,8 +27,6 @@
                 </div>
             </div>
 
-
-
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">
                 <form method="POST" action="{{ route('comments.store', ['group' => $group, 'post' => $post]) }}">
                     @csrf
@@ -38,7 +36,7 @@
                             Commenta
                         </x-primary-button>
                     </div>
-                    <textarea name="content" id="content" rows="4" class="w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Inserisci il tuo commento" required></textarea>
+                    <textarea name="content" id="content" rows="4" class="shadow-md w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Inserisci il tuo commento" required></textarea>
                 </form>
                 @foreach($comments as $comment)
                         <x-comment :comment="$comment" />

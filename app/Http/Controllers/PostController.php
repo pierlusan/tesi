@@ -23,6 +23,7 @@ class PostController extends Controller
         if (!$post) {
             abort(404);
         }
+
         return view('posts.show', ['post' => $post, 'group' => $group, 'comments' => $comments]);
     }
 
@@ -37,6 +38,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|string',
         ]);
+
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
@@ -44,6 +46,7 @@ class PostController extends Controller
         //$post->group_id = $request->input('group_id');
         $post->user_id = auth()->user()->id;
         $post->save();
+
         return redirect()->route('posts.show', ['group' => $group->id, 'post' => $post->id])->with('success', 'Post creato con successo.');
     }
 

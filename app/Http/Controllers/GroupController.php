@@ -13,6 +13,7 @@ class GroupController extends Controller
     {
         $user = Auth::user();
         $groups = $user->groups;
+
         return view('groups.index', compact('groups'));
     }
 
@@ -22,6 +23,7 @@ class GroupController extends Controller
         $usersNotInGroup = User::whereDoesntHave('groups', function ($query) use ($groupId) {
             $query->where('group_id', $groupId);
         })->get();
+
         return view('groups.show', ['group' => $group, 'users' => $usersNotInGroup]);
     }
 
@@ -31,6 +33,7 @@ class GroupController extends Controller
             ->where('is_admin', false)
             ->orderBy('name', 'asc')
             ->get();
+
         return view('groups.create', compact('users'));
     }
 
@@ -46,7 +49,6 @@ class GroupController extends Controller
         $group->name = $request->input('name');
         $group->description = $request->input('description');
         $group->save();
-
         $group->users()->attach(auth()->user());
         $group->users()->attach($request->input('users'));
 
@@ -77,19 +79,23 @@ class GroupController extends Controller
         $request->validate([
             'users' => 'required|array',
         ]);
+
         $group->users()->attach($request->input('users'));
+
         return redirect()->route('groups.show', ['group' => $group])->with('success', 'Utenti aggiunti con successo al gruppo.');
     }
 
     public function remove(Group $group, User $user)
     {
         $group->users()->detach($user->id);
+
         return redirect()->route('groups.show', $group)->with('success', 'Utente rimosso con successo dal gruppo');
     }
 
     public function destroy(Group $group)
     {
         $group->delete();
+
         return redirect()->route('groups.index')->with('success', 'Gruppo eliminato con successo.');
     }
 

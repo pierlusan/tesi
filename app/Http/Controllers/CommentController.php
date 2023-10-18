@@ -25,4 +25,15 @@ class CommentController extends Controller
             ->with('success', 'Commento aggiunto con successo!');
     }
 
+    public function destroy(Comment $comment)
+    {
+        if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id) {
+            $comment->delete();
+            return redirect()->back()->with('success', 'Commento eliminato con successo');
+        } else {
+            return redirect()->back()->with('error', 'Non sei autorizzato a eliminare questo commento');
+        }
+    }
+
+
 }

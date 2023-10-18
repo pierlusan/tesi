@@ -78,7 +78,9 @@ Route::get('/groups/{group}/posts-create', [PostController::class, 'create'])
 Route::post('/groups/{group}/posts', [PostController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('posts.store');
-
+Route::delete('/groups/{group}/posts/{post}', [PostController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('posts.destroy');
 
 Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])

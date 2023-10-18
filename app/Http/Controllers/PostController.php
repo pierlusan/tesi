@@ -37,17 +37,24 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|string',
         ]);
-
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->group_id = $group->id;
         //$post->group_id = $request->input('group_id');
         $post->user_id = auth()->user()->id;
-
         $post->save();
-
         return redirect()->route('posts.show', ['group' => $group->id, 'post' => $post->id])->with('success', 'Post creato con successo.');
+    }
+
+    public function destroy(Group $group, Post $post)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato a eliminare questo post.');
+        }
+        $post->delete();
+        return redirect()->route('posts.index', ['group' => $group])
+            ->with('success', 'Il post è stato eliminato con successo.');
     }
 
 }

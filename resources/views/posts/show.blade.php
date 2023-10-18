@@ -9,13 +9,24 @@
                         <p class="text-gray-600 text-xs">{{ $post->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                     <p class="text-gray-700">{{ $post->content }}</p>
-                    <div class="mt-4">
+                    <div class="mt-4 flex justify-between items-center">
                         <p class="text-sm text-gray-400 -mb-1">Scritto da {{ $post->user->name }} in
                             <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-500 hover:text-gray-800">{{ $post->group->name }}</a>
                         </p>
+                        @if (auth()->user()->isAdmin())
+                            <form action="{{ route('posts.destroy', ['group' => $group, 'post' => $post]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo post?')">
+                                    <!-- <x-feathericon-trash-2 /> -->
+                                    Elimina
+                                </x-danger-button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
+
 
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">

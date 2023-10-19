@@ -42,7 +42,7 @@
                             Commenta
                         </x-primary-button>
                     </div>
-                    <textarea name="content" id="content" rows="4" class="shadow-md w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Inserisci il tuo commento" required></textarea>
+                    <textarea name="content" id="content" rows="4" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Scrivi un commento" required></textarea>
                 </form>
                 @foreach($comments as $comment)
                         <x-comment :comment="$comment" />

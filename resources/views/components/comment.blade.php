@@ -11,7 +11,7 @@
     </div>
     <p class="text-gray-700">{{ $comment->content }}</p>
     @if ($comment->replies->count() > 0)
-        <div class="border-l-4 border-l-gray-800 ml-0 mt-3 bg-white space-y-2">
+        <div class="border-l-4 border-l-gray-800 ml-0 mt-3 mb-4 bg-white space-y-2">
             @foreach($comment->replies as $reply)
                 <div class="border-b-2 border-l-gray-400 px-4 py-2">
                     <div class="flex items-center mb-2 @if(auth()->check() && auth()->user()->id === $reply->user_id) text-sm font-semibold text-gray-900 @else text-sm text-gray-500 @endif">
@@ -34,7 +34,7 @@
         <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment]) }}">
             @csrf
             @method('DELETE')
-            <div class="flex justify-end mt-4 -mb-2">
+            <div class="flex justify-end -mb-2">
                 <button style="font-size: 0.65rem" class="inline-flex items-center px-2 py-1 bg-red-600 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150" type="submit" onclick="return confirm('Sei sicuro di voler eliminare il commento?')">
                     <!-- <x-feathericon-trash-2 class="h-3.5" /> -->Elimina
                 </button>

@@ -1,5 +1,6 @@
 # Guida all'installazione
-**IMPORTANTE:** Prima di iniziare, assicurati di avere i seguenti requisiti installati sul tuo computer:
+
+***IMPORTANTE:** Prima di iniziare, assicurati di avere i seguenti requisiti installati sul tuo computer:*
 1. **Git**: Se non hai Git installato, puoi scaricarlo da [questo link](https://git-scm.com/downloads).
 2. **Node.js** & **npm**: Node.js è un runtime JavaScript e npm è il gestore di pacchetti di Node.js. Puoi scaricarli da [questo link](https://nodejs.org/). Assicurati di avere npm incluso nell'installazione di Node.js.
 3. **Composer**: Composer è un gestore di dipendenze per PHP. Puoi scaricarlo da [questo link](https://getcomposer.org/).
@@ -8,6 +9,7 @@
 
 
 ### Setup dell'applicazione:
+
 1. **Clona il repository**: Apri il tuo terminale o prompt dei comandi e esegui il seguente comando per clonare il repository da GitHub:
    ```bash
    git clone https://github.com/cianf4/test.git
@@ -33,7 +35,7 @@
    cp .env.example .env
    ```
 
-6. **Configura il file di ambiente**: Modifila il file di ambiente `.env` secondo le tue esigenze. In particolare le linee di codice associate all'accesso al database:
+6. **Configura il file di ambiente**: Modifica il file di ambiente `.env` secondo le tue esigenze. In particolare le linee di codice associate all'accesso al database:
    ```
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
@@ -53,6 +55,7 @@
    ```
 
 ### Run dell'applicazione:
+
 1. **Compila le risorse front-end**: Esegui il seguente comando per avviare il processo di compilazione delle risorse front-end del progetto:
    ```bash
    npm run dev

@@ -17,12 +17,12 @@ class CommentController extends Controller
 
         $comment = new Comment();
         $comment->content = $request->input('content');
-        $comment->user_id = auth()->user()->id; // Imposta l'utente corrente come autore del commento
+        $comment->user_id = auth()->user()->id;
         $comment->post_id = $post->id;
         $comment->save();
 
         return redirect()->route('posts.show', ['group' => $group, 'post' => $post])
-            ->with('success', 'Commento aggiunto con successo!');
+            ->with('success', 'Commento inviato con successo!');
     }
 
     public function destroy(Comment $comment)

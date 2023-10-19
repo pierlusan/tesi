@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReplyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,6 +89,11 @@ Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('comments.destroy');
+
+Route::post('/groups/{group}/posts/{post}/comments/{comment}', [ReplyController::class, 'store'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('replies.store');
+
 
 
 

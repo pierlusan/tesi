@@ -8,19 +8,18 @@
                 {{ $comment->author->name }}</p>
         </div>
         <div>
-            @if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id)
-                <form method="POST" action="{{ route('comments.destroy', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
-                    @csrf
-                    @method('DELETE')
-                    <div class="flex justify-end">
-                        <p class="text-gray-400 text-xs">{{ $comment->created_at->format('d/m/Y H:i') }}</p>
+            <form method="POST" action="{{ route('comments.destroy', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
+                @csrf
+                @method('DELETE')
+                <div class="flex justify-end">
+                    <p class="text-gray-400 text-xs">{{ $comment->created_at->format('d/m/Y H:i') }}</p>
+                    @if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id)
                         <button type="submit" class="text-red-600 ml-1 hover:text-red-400 hover:rounded" onclick="return confirm('Sei sicuro di voler eliminare il commento?')">
                             <x-feathericon-x class="h-6 -mt-1" />
                         </button>
-
-                    </div>
-                </form>
-            @endif
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
     <p class="text-gray-700">{{ $comment->content }}</p>
@@ -35,8 +34,19 @@
                     <div class="flex">
                         <p class="text-gray-700">{{ $reply->content }}</p>
                     </div>
-                    <div class="flex justify-end items-center">
+                    <div class="flex justify-end items-center -mr-4">
                         <p class="text-xs text-gray-400 -mt-1">{{ $reply->created_at->format('d/m/Y H:i') }}</p>
+                        @if (auth()->user()->isAdmin() || auth()->id() === $reply->user_id)
+                            <form method="POST" action="{{ route('replies.destroy', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment, 'reply' => $reply]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <div class="flex justify-end">
+                                    <button type="submit" class="text-red-600 ml-1 hover:text-red-400 hover:rounded" onclick="return confirm('Sei sicuro di voler eliminare il commento?')">
+                                        <x-feathericon-x class="h-6 -mt-1" />
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             @endforeach

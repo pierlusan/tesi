@@ -27,4 +27,15 @@ class ReplyController extends Controller
             ->with('success', 'Risposta inviata con successo!');
     }
 
+    public function destroy(Group $group, Post $post, Comment $comment, Reply $reply)
+    {
+        if (auth()->user()->isAdmin() || auth()->id() === $reply->user_id) {
+            $reply->delete();
+            return redirect()->back()
+                ->with('success', 'Risposta eliminata con successo');
+        } else {
+            abort(403, 'Non sei autorizzato a eliminare questa risposta.');
+        }
+    }
+
 }

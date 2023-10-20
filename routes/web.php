@@ -87,12 +87,15 @@ Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.store');
 Route::delete('/groups/{group}/posts/{post}/comments/{comment}', [CommentController::class, 'destroy'])
-    ->middleware(['auth', 'verified', 'approved'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.destroy');
 
 Route::post('/groups/{group}/posts/{post}/comments/{comment}', [ReplyController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('replies.store');
+Route::delete('/groups/{group}/posts/{post}/comments/{comment}/replies/{reply}', [ReplyController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('replies.destroy');
 
 
 

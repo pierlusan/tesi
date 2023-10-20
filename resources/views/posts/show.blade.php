@@ -39,7 +39,7 @@
                     <div class="flex justify-between items-center">
                         <h3 class="text-2xl font-semibold mb-4 my-4">
                             Commenti
-                            <span class="inline-block bg-gray-700 text-white rounded px-1.5 ml-1.5" style="font-size: 0.65em">
+                            <span class="inline-block bg-gray-700 text-white rounded px-1.5 -py-1 ml-1.5" style="font-size: 0.6em">
                                 {{ $post->comments->count() }}
                             </span>
                         </h3>

@@ -7,7 +7,21 @@
             <p class="">
                 {{ $comment->author->name }}</p>
         </div>
-        <p class="text-gray-400 text-xs">{{ $comment->created_at->format('d/m/Y H:i') }}</p>
+        <div>
+            @if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id)
+                <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <div class="flex justify-end">
+                        <p class="text-gray-400 text-xs">{{ $comment->created_at->format('d/m/Y H:i') }}</p>
+                        <button type="submit" class="text-red-600 ml-1 hover:text-red-400 hover:rounded" onclick="return confirm('Sei sicuro di voler eliminare il commento?')">
+                            <x-feathericon-x class="h-6 -mt-1" />
+                        </button>
+
+                    </div>
+                </form>
+            @endif
+        </div>
     </div>
     <p class="text-gray-700">{{ $comment->content }}</p>
     @if ($comment->replies->count() > 0)
@@ -27,27 +41,16 @@
                 </div>
             @endforeach
         </div>
-        <form method="post" action="{{ route('replies.store', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
-            @csrf
-            <div class="mb-4">
-                <textarea name="content" id="content" rows="2" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
-            </div>
-            <div class="mt-4">
-                <button type="submit" style="font-size: 0.65rem" class="inline-flex items-center px-2 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Rispondi</button>
-            </div>
-        </form>
     @endif
-
-
-@if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id)
-        <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment]) }}">
-            @csrf
-            @method('DELETE')
-            <div class="flex justify-end -mb-2">
-                <button style="font-size: 0.65rem" class="inline-flex items-center px-2 py-1 bg-red-600 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150" type="submit" onclick="return confirm('Sei sicuro di voler eliminare il commento?')">
-                    <!-- <x-feathericon-trash-2 class="h-3.5" /> -->Elimina
-                </button>
-            </div>
-        </form>
-    @endif
+    <form method="post" action="{{ route('replies.store', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
+        @csrf
+        <div class="mb-4">
+            <textarea name="content" id="content" rows="2" class="shadow-md w-full px-4 py-2 mt-3 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
+        </div>
+        <div class="-mt-2 flex justify-end">
+            <button type="submit" style="font-size: 0.7rem" class="inline-flex items-center px-3 py-1.5 bg-gray-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                Rispondi
+            </button>
+        </div>
+    </form>
 </div>

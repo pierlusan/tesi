@@ -25,7 +25,7 @@ class CommentController extends Controller
             ->with('success', 'Commento inviato con successo!');
     }
 
-    public function destroy(Comment $comment)
+    public function destroy(Group $group, Post $post, Comment $comment)
     {
         if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id) {
             $comment->delete();

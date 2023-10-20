@@ -9,7 +9,7 @@
         </div>
         <div>
             @if (auth()->user()->isAdmin() || auth()->id() === $comment->user_id)
-                <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment]) }}">
+                <form method="POST" action="{{ route('comments.destroy', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-end">
@@ -44,11 +44,11 @@
     @endif
     <form method="post" action="{{ route('replies.store', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
         @csrf
-        <div class="mb-4">
-            <textarea name="content" id="content" rows="2" class="shadow-md w-full px-4 py-2 mt-3 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
+        <div class="mb-2">
+            <textarea name="content" id="content" rows="2" class="shadow-sm text-sm w-full px-4 py-2 mt-3 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
         </div>
-        <div class="-mt-2 flex justify-end">
-            <button type="submit" style="font-size: 0.7rem" class="inline-flex items-center px-3 py-1.5 bg-gray-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+        <div class="flex justify-end">
+            <button type="submit" style="font-size: 0.65rem" class="inline-flex items-center px-3 py-1.5 bg-gray-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 Rispondi
             </button>
         </div>

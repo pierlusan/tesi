@@ -86,7 +86,7 @@ Route::delete('/groups/{group}/posts/{post}', [PostController::class, 'destroy']
 Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
+Route::delete('/groups/{group}/posts/{post}/comments/{comment}', [CommentController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('comments.destroy');
 

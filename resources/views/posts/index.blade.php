@@ -23,15 +23,17 @@
                                 <li class="border rounded-lg p-4 shadow-md hover:bg-gray-100">
                                     <a href="{{ route('posts.show', ['group' => $group, 'post' => $post]) }}" class="hover:bg-gray-400">
                                         <div class="mb-1 -mt-1 flex justify-between items-center">
-                                            <h2 class="text-lg font-semibold">{{ $post->title }}</h2>
+                                            <h2 class="font-semibold">{{ $post->title }}</h2>
                                             <p class="text-gray-600 text-xs">Inviato da {{ $post->user->name }} - {{ $post->created_at->format('d/m/Y H:i') }}</p>
                                         </div>
-                                        <p class="text-gray-700">{{ $post->content }}</p>
-                                        <div class="mt-4">
+                                        <p class="text-gray-700 text-sm">
+                                            {{ strlen($post->content) > 400 ? substr($post->content, 0, 400) . '...' : $post->content }}
+                                        </p>
+                                        <div class="mt-2">
                                             @if ($post->comments->count() == 1)
-                                                <p class="text-sm text-gray-400 -mb-1">{{ $post->comments->count() }} commento</p>
+                                                <p class="text-xs text-gray-400 -mb-1">{{ $post->comments->count() }} commento</p>
                                             @else
-                                                <p class="text-sm text-gray-400 -mb-1">{{ $post->comments->count() }} commenti</p>
+                                                <p class="text-xs text-gray-400 -mb-1">{{ $post->comments->count() }} commenti</p>
                                             @endif
                                         </div>
                                     </a>

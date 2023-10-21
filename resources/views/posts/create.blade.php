@@ -21,11 +21,11 @@
 
                         <div class="mb-4">
                             <label for="attachments" class="block text-gray-600 mb-2">Allegati <span class="text-xs text-gray-600">(max: 128MB)</span></label>
-                            <input type="file" name="attachments[]" id="attachments" multiple>
+                            <input type="file" name="attachments[]" id="attachments" class="w-full border border-solid rounded-md border-gray-300 file:mr-4 file:uppercase file:px-8 file:py-3 file:border-0 file:rounded-l-md file:font-semibold file:text-white file:text-xs file:tracking-widest file:bg-gray-800 hover:file:bg-gray-700 hover:file:cursor-pointer" multiple>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-primary-button type="submit">Crea Post</x-primary-button>
+                            <x-primary-button type="submit" id="submitButton">Crea Post</x-primary-button>
                         </div>
                     </form>
                 </div>
@@ -33,3 +33,5 @@
         </div>
     </div>
 </x-app-layout>
+
+

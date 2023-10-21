@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 
 class AttachmentController extends Controller
 {
-    public function show(Group $group, Post $post, Attachment $attachment)
+    public function show(Group $group, Post $post, Attachment $attachment, $attachmentName)
     {
         $groupId = $group->id;
         $postId = $post->id;
         $attachmentId = $attachment->id;
+        $attachmentName = $attachment->filename;
         if (!$attachment) {
             abort(404, 'File non trovato.');
         }

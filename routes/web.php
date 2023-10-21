@@ -84,7 +84,7 @@ Route::delete('/groups/{group}/posts/{post}', [PostController::class, 'destroy']
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('posts.destroy');
 
-Route::get('/groups/{group}/posts/{post}/attachments/{attachment}', [AttachmentController::class, 'show'])
+Route::get('/groups/{group}/posts/{post}/attachments/{attachment}-{attachment_name}', [AttachmentController::class, 'show'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('attachments.show');
 

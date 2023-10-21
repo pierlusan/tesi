@@ -36,7 +36,7 @@
                     <ul>
                         @foreach ($post->attachments as $attachment)
                             <li>
-                                <a href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment]) }}">
+                                <a href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}">
                                     {{ $attachment->file_name }}
                                 </a>
                             </li>

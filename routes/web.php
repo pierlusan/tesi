@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GroupController;
@@ -82,6 +83,10 @@ Route::post('/groups/{group}/posts', [PostController::class, 'store'])
 Route::delete('/groups/{group}/posts/{post}', [PostController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('posts.destroy');
+
+Route::get('/groups/{group}/posts/{post}/attachments/{attachment}', [AttachmentController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('attachments.show');
 
 Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])

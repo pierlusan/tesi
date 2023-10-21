@@ -37,17 +37,31 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|string',
+            'attachment' => 'file|mimes:pdf,docx,doc,xls,xlsx,ppt,pptx,jpg,png,gif,mp3,mp4,avi,zip,rar,7z,txt,rtf,md',
         ]);
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->group_id = $group->id;
-        //$post->group_id = $request->input('group_id');
         $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect()->route('posts.show', ['group' => $group->id, 'post' => $post->id])->with('success', 'Post creato con successo.');
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $postId = $post->id;
+                $fileName = $attachment->getClientOriginalName();
+                $filePath = $attachment->store('attachments', 'public');
+                $post->attachments()->create([
+                    'file_name' => $fileName,
+                    'file_path' => $filePath,
+                    'post_id' => $postId,
+                ]);
+            }
+        }
+
+        return redirect()->route('posts.show', ['group' => $group->id, 'post' => $post->id])
+            ->with('success', 'Post creato con successo.');
     }
 
     public function destroy(Group $group, Post $post)

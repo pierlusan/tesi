@@ -31,6 +31,18 @@
                         @endif
                     </div>
                 </div>
+                @if ($post->attachments->count() > 0)
+                    <h2>Allegati:</h2>
+                    <ul>
+                        @foreach ($post->attachments as $attachment)
+                            <li>
+                                <a href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment]) }}">
+                                    {{ $attachment->file_name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">

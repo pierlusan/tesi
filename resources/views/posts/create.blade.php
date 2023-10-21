@@ -6,17 +6,22 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} - Crea Post</h1>
 
-                    <form method="POST" action="{{ route('posts.store', ['group' => $group]) }}" class="space-y-4">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('posts.store', ['group' => $group]) }}" class="space-y-4">
                         @csrf
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-600">Titolo</label>
+                            <label for="title" class="block text-gray-600">Titolo<span class="font-bold text-base text-red-600">*</span></label>
                             <!--<input type="hidden" name="group_id" value="{{ $group->id }}">-->
                             <x-text-input type="text" name="title" class="block w-full" id="title" required></x-text-input>
                         </div>
 
                         <div class="mb-4">
-                            <label for="content" class="block text-gray-600">Contenuto</label>
+                            <label for="content" class="block text-gray-600">Contenuto<span class="font-bold text-base text-red-600">*</span></label>
                             <textarea name="content" id="content" class="block h-32 mt-1 mb-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="attachments" class="block text-gray-600 mb-2">Allegati</label>
+                            <input type="file" name="attachments[]" id="attachments" multiple>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

@@ -14,10 +14,25 @@
                         <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
                         <p class="text-gray-600 text-xs">{{ $post->created_at->format('d/m/Y H:i') }}</p>
                     </div>
-                    <p class="text-gray-700">{{ $post->content }}</p>
+                    <p class="text-gray-700 text-justify">{{ $post->content }}</p>
+                    @if ($post->attachments->count() > 0)
+                        <div class="items-center px-4 py-1 mt-4 border-l-4 border-solid border-gray-500">
+                            <div class="flex items-center mb-1">
+                                <x-feathericon-paperclip class="h-4" />
+                                <h2 class="text-base text-gray-500">Allegati:</h2><br>
+                            </div>
+                            <div>
+                                @foreach ($post->attachments as $attachment)
+                                    <a type="button" target="_blank" href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}"
+                                       class="px-2 py-1 m-1 text-white text-sm bg-gray-500 rounded-md hover:bg-gray-400 hover:underline">{{ $attachment->file_name }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <div class="mt-4 flex justify-between items-center">
                         <p class="text-sm text-gray-400 -mb-1">Scritto da {{ $post->user->name }} in
-                            <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-500 hover:text-gray-800">{{ $post->group->name }}</a>
+                            <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-700 hover:text-gray-500">{{ $post->group->name }}</a>
                         </p>
                         @if (auth()->user()->isAdmin())
                             <form action="{{ route('posts.destroy', ['group' => $group, 'post' => $post]) }}" method="POST">
@@ -31,18 +46,6 @@
                         @endif
                     </div>
                 </div>
-                @if ($post->attachments->count() > 0)
-                    <h2>Allegati:</h2>
-                    <ul>
-                        @foreach ($post->attachments as $attachment)
-                            <li>
-                                <a href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}">
-                                    {{ $attachment->file_name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">

@@ -14,13 +14,13 @@
                             <x-text-input type="text" name="title" class="block w-full" id="title" required></x-text-input>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-6">
                             <label for="content" class="block text-gray-600">Contenuto<span class="font-bold text-base text-red-600">*</span></label>
                             <textarea name="content" id="content" class="block h-32 mt-1 mb-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required></textarea>
                         </div>
 
                         <div class="mb-4">
-                            <label for="attachments" class="block text-gray-600 mb-2">Allegati</label>
+                            <label for="attachments" class="block text-gray-600 mb-2">Allegati <span class="text-xs text-gray-600">(max: 128MB)</span></label>
                             <input type="file" name="attachments[]" id="attachments" multiple>
                         </div>
 

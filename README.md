@@ -49,10 +49,23 @@
    ```bash
    php artisan key:generate
    ```
+   
 8. **Esegui le Migrazioni del Database**: Per creare le tabelle del database, esegui:
    ```bash
    php artisan migrate
    ```
+<small>
+
+9. ***Setup minori:** nel file php/php.ini dell'interprete (es: XAMMP), Sono state modificate le seguenti righe di codice:*
+   ```php
+   upload_max_filesize=128M
+   max_post_size=128M
+   max_execution_time = 300
+   memory_limit = 1024M
+   ```
+
+</small>
+
 
 ### Run dell'applicazione:
 

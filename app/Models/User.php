@@ -72,9 +72,4 @@ class User extends Authenticatable
         return static::where('approved', false)->orderBy('created_at', 'desc')->get();
     }
 
-    public static function notMembers(Group $group)
-    {
-
-    }
-
 }

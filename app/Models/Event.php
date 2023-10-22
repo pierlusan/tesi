@@ -22,7 +22,6 @@ class Event extends Model
         'date' => 'datetime',
     ];
 
-
     public function group()
     {
         return $this->belongsTo(Group::class);

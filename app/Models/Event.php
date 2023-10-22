@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\EventStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ class Event extends Model
         'title',
         'description',
         'date',
+        'status',
         'type',
         'group_id',
         'user_id',
@@ -20,6 +22,7 @@ class Event extends Model
 
     protected $casts = [
         'date' => 'datetime',
+        'status' => EventStatus::class,
     ];
 
     public function group()

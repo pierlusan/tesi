@@ -19,5 +19,6 @@ class AdminMiddleware
         {
             return $next($request);
         }
-        return abort(403, 'Accesso non autorizzato.');    }
+        return abort(403, 'Accesso non autorizzato.');
+    }
 }

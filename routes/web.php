@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -67,6 +68,22 @@ Route::delete('/groups/{group}/remove-user/{user}', [GroupController::class, 're
 Route::delete('/groups/{group}', [GroupController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.destroy');
+
+Route::get('/groups/{group}/events', [EventController::class, 'index'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('events.index');
+Route::get('/groups/{group}/events/{event}', [EventController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('events.show');
+Route::get('/groups/{group}/events-create', [EventController::class, 'create'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member', 'is_admin'])
+    ->name('events.create');
+Route::post('/groups/{group}/events', [EventController::class, 'store'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('events.store');
+Route::delete('/groups/{group}/events/{event}', [EventController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('events.destroy');
 
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])

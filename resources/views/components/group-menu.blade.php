@@ -10,4 +10,11 @@
             {{ $group->posts()->count() }}
         </span>
     </x-nav-link-group>
+    <x-nav-link-group :href="route('events.index', ['group' => $group])"
+                      :active="request()->routeIs('events.index')">
+        {{ __('Eventi') }}
+        <span class="inline-block bg-gray-300 text-gray-500 rounded px-1.5 -py-1 ml-1.5 text-xs">
+            {{ $group->events()->count() }}
+        </span>
+    </x-nav-link-group>
 </div>

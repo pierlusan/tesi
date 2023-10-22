@@ -23,7 +23,7 @@ class IsMemberMiddleware
         if ($group && $group->isMember($userId)) {
             return $next($request);
         }
-        return redirect()->route('dashboard');
+        return abort(403, 'Accesso non autorizzato.');
     }
 
 }

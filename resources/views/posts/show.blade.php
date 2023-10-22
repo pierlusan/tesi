@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gruppi - ') }} <span class="font-normal">{{ $group->name }}</span>
+            {{ __('Gruppi - ') }} <span class="font-normal">{{ $post->group->name }}</span>
         </h2>
     </x-slot>
 
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <x-group-menu :group="$group" />
+                <x-group-menu :group="$post->group" />
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-1 -mt-1 flex justify-between items-center">
                         <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
@@ -64,7 +64,7 @@
                     </div>
                     <textarea name="content" id="content" rows="3" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Scrivi un commento" required></textarea>
                 </form>
-                @foreach($comments as $comment)
+                @foreach($post->comments as $comment)
                         <x-comment :comment="$comment" />
                 @endforeach
             </div>

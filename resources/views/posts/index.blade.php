@@ -10,11 +10,11 @@
                 <x-group-menu :group="$group" />
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
+                        <h1 class="text-2xl font-semibold">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
                         @if (auth()->user()->isAdmin())
-                        <form action="{{ route('posts.create', ['group' => $group]) }}" method="GET">
-                            <x-primary-button>Nuovo Post</x-primary-button>
-                        </form>
+                            <form action="{{ route('posts.create', ['group' => $group]) }}" method="GET">
+                                <x-primary-button>Nuovo Post</x-primary-button>
+                            </form>
                         @endif
                     </div>
                     @if ($posts->count() > 0)

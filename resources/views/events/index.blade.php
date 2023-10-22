@@ -30,7 +30,9 @@
                                         <div class="text-gray-600 text-sm">
                                             {{ $event->description }}
                                         </div>
-                                        <div class="text-gray-400 text-xs mt-2">Data: {{ $event->date->format('d/m/Y H:i') }}</div>
+                                        <div class="text-gray-400 text-sm mt-2">
+                                            Data: {{ $event->date->format('d/m/Y H:i') }}
+                                        </div>
                                     </a>
                                 </li>
                             @endforeach

@@ -12,7 +12,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-1 -mt-1 flex justify-between items-center">
                         <h2 class="text-xl font-semibold">In programma il <span class="text-red-500">{{ $event->date->format('d/m/Y') }}</span> alle <span class="text-red-500">{{ $event->date->format('H:i') }}</span></h2>
-                        <p class="text-gray-600 text-xs">In programma il {{ $event->created_at->format('d/m/Y H:i') }}</p>
+                        <p class="text-gray-600 text-xs">{{ $event->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                     <h2 class="text-2xl font-semibold">{{ $event->title }}</h2>
                     <p class="text-gray-700 text-justify">{{ $event->description }}</p>

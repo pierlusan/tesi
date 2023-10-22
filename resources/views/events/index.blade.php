@@ -24,14 +24,27 @@
                             @foreach ($events as $event)
                                 <li>
                                     <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
-                                        <div class="mb-1">
-                                            <span class="text-gray-900 font-semibold">{{ $event->title }}</span>
-                                        </div>
-                                        <div class="text-gray-600 text-sm">
-                                            {{ $event->description }}
-                                        </div>
-                                        <div class="text-gray-400 text-sm mt-2">
-                                            Data: {{ $event->date->format('d/m/Y H:i') }}
+                                        <div class="flex justify-start items-center">
+                                            <div class="p-2 m-4">
+                                                <span @class(['px-2 py-1 text-white rounded-md text-2xs font-semibold uppercase',
+                                                    'bg-indigo-600' => $event->status->isPlanned(),
+                                                    'bg-emerald-600' => $event->status->isActive(),
+                                                    'bg-gray-700' => $event->status->isCompleted(),
+                                                    'bg-red-600' => $event->status->isCanceled(),])>
+                                                    {{ $event->status }}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="">
+                                                    <span class="text-gray-900 font-semibold">{{ $event->title }}</span>
+                                                </div>
+                                                <div class="text-gray-600 text-sm">
+                                                    {{ $event->description }}
+                                                </div>
+                                                <div class="text-gray-400 text-sm mt-2">
+                                                    Data: {{ $event->date->format('d/m/Y H:i') }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </a>
                                 </li>

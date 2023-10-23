@@ -24,9 +24,9 @@
                             @foreach ($events as $event)
                                 <li>
                                     <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
-                                        <div class="flex justify-start items-center">
-                                            <div class="p-2 m-4">
-                                                <span @class(['px-2 py-1 text-white rounded-md text-2xs font-semibold uppercase',
+                                        <div class="grid grid-cols-12">
+                                            <div class="col-span-2 flex items-center justify-center mr-4">
+                                                <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',
                                                     'bg-indigo-600' => $event->status->isPlanned(),
                                                     'bg-emerald-600' => $event->status->isActive(),
                                                     'bg-gray-700' => $event->status->isCompleted(),
@@ -34,8 +34,8 @@
                                                     {{ $event->status }}
                                                 </span>
                                             </div>
-                                            <div>
-                                                <div class="">
+                                            <div class="col-span-10 pl-3 border-l-2 border-gray-300">
+                                                <div class="mb-1">
                                                     <span class="text-gray-900 font-semibold">{{ $event->title }}</span>
                                                 </div>
                                                 <div class="text-gray-600 text-sm">

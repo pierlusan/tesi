@@ -29,7 +29,7 @@ class Group extends Model
         return $this->hasMany(Event::class);
     }
 
-    public function isMember($userId)
+    public function checkMember($userId)
     {
         return $this->users()->where('user_id', $userId)->exists();
     }

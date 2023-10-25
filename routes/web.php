@@ -22,28 +22,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Welcome
 Route::get('/', function () {
     return view('welcome');
 })->middleware('guest')
     ->name('welcome');
 
+// Homepage
 Route::get('/dashboard', [Controller::class, 'dashboard'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('dashboard');
 
+// Approval Request
 Route::get('/approval-request', function () {
     return view('approval_request');
 })->middleware(['auth', 'approved.redirect'])
     ->name('approval.request');
 
-Route::get('/pending-users', [AdminController::class, 'showPendingUsers'])
-    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
-    ->name('admin.pending_users');
-Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
-    ->middleware(['auth', 'verified', 'is_admin'])
-    ->name('admin.approve_user');
-
+// Groups
 Route::get('/groups', [GroupController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('groups.index');
@@ -69,6 +65,7 @@ Route::delete('/groups/{group}', [GroupController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('groups.destroy');
 
+// Events
 Route::get('/groups/{group}/events', [EventController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('events.index');
@@ -76,7 +73,7 @@ Route::get('/groups/{group}/events/{event}', [EventController::class, 'show'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('events.show');
 Route::get('/groups/{group}/events-create', [EventController::class, 'create'])
-    ->middleware(['auth', 'verified', 'approved', 'is_member', 'is_admin'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.create');
 Route::post('/groups/{group}/events', [EventController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
@@ -85,6 +82,7 @@ Route::delete('/groups/{group}/events/{event}', [EventController::class, 'destro
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.destroy');
 
+// Posts
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.index');
@@ -92,19 +90,16 @@ Route::get('/groups/{group}/posts/{post}', [PostController::class, 'show'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.show');
 Route::get('/groups/{group}/posts-create', [PostController::class, 'create'])
-    ->middleware(['auth', 'verified', 'approved', 'is_member', 'is_admin'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.create');
 Route::post('/groups/{group}/posts', [PostController::class, 'store'])
-    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.store');
 Route::delete('/groups/{group}/posts/{post}', [PostController::class, 'destroy'])
-    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('posts.destroy');
 
-Route::get('/groups/{group}/posts/{post}/attachments/{attachment}-{attachment_name}', [AttachmentController::class, 'show'])
-    ->middleware(['auth', 'verified', 'approved', 'is_member'])
-    ->name('attachments.show');
-
+// Comments
 Route::post('/groups/{group}/posts/{post}', [CommentController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.store');
@@ -112,6 +107,7 @@ Route::delete('/groups/{group}/posts/{post}/comments/{comment}', [CommentControl
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('comments.destroy');
 
+// Replies
 Route::post('/groups/{group}/posts/{post}/comments/{comment}', [ReplyController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('replies.store');
@@ -119,9 +115,20 @@ Route::delete('/groups/{group}/posts/{post}/comments/{comment}/replies/{reply}',
     ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('replies.destroy');
 
+// Attachments
+Route::get('/groups/{group}/posts/{post}/attachments/{attachment}-{attachment_name}', [AttachmentController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
+    ->name('attachments.show');
 
+// Pending Users
+Route::get('/pending-users', [AdminController::class, 'showPendingUsers'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('admin.pending_users');
+Route::patch('/approve-user/{user}', [AdminController::class, 'approveUser'])
+    ->middleware(['auth', 'verified', 'is_admin'])
+    ->name('admin.approve_user');
 
-
+// Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->middleware('approved')

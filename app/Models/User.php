@@ -72,6 +72,16 @@ class User extends Authenticatable
         return $this->is_admin == true;
     }
 
+    public function isMember(Group $group)
+    {
+        return $this->groups()->where('group_id', $group->id)->exists();
+    }
+
+    public function isAuthor(Post $post)
+    {
+        return $this->id === $post->user->id;
+    }
+
     public static function pendingUsers()
     {
         return static::where('approved', false)->orderBy('created_at', 'desc')->get();

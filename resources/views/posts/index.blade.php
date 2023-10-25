@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
                         <h1 class="text-2xl font-semibold">{{ $group->name }} <span class="font-normal"> - Post</span></h1>
-                        @if (auth()->user()->isAdmin())
+                        @if (auth()->user()->isAdmin()  || auth()->user()->isMember($group))
                             <form action="{{ route('posts.create', ['group' => $group]) }}" method="GET">
                                 <x-primary-button>Nuovo Post</x-primary-button>
                             </form>

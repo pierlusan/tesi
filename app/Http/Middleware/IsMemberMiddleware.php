@@ -20,7 +20,7 @@ class IsMemberMiddleware
         $group = $request->route('group');
         $userId = Auth::id();
         //$group = Group::find($groupId);
-        if ($group && $group->isMember($userId)) {
+        if ($group && $group->checkMember($userId)) {
             return $next($request);
         }
         return abort(403, 'Accesso non autorizzato.');

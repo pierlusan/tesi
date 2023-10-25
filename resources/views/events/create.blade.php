@@ -28,10 +28,12 @@
                             <x-text-input type="datetime-local" name="date" class="block w-full" id="date" min="{{ now()->toDateString() . 'T' . now()->format('H:i') }}" required></x-text-input>
                         </div>
 
+                        <!--
                         <div class="mb-4">
                             <label for="type" class="block text-gray-600">Tipologia</label>
                             <x-text-input type="text" name="type" class="block w-full" id="type"></x-text-input>
                         </div>
+                        -->
 
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button type="submit">Pianifica Evento</x-primary-button>

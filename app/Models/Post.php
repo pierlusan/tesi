@@ -36,4 +36,9 @@ class Post extends Model
         return $this->hasMany(Attachment::class);
     }
 
+    public function checkAuthor($userId)
+    {
+        return $this->user()->id() === $userId;
+    }
+
 }

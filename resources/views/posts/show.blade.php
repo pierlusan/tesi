@@ -34,7 +34,7 @@
                         <p class="text-sm text-gray-400 -mb-1">Scritto da {{ $post->user->name }} in
                             <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-700 hover:text-gray-500">{{ $post->group->name }}</a>
                         </p>
-                        @if (auth()->user()->isAdmin())
+                        @if (auth()->user()->isAdmin() || auth()->user()->isAuthor($post))
                             <form action="{{ route('posts.destroy', ['group' => $group, 'post' => $post]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

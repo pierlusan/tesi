@@ -62,7 +62,7 @@
                             Commenta
                         </x-primary-button>
                     </div>
-                    <div class="p-4 bg-gray-100 border rounded-md border-gray-300 shadow-md">
+                    <div class="p-4 bg-gray-100 hover:bg-white border rounded-md border-gray-200 shadow-md">
                         <div class="w-full mb-4">
                             <textarea name="content" id="content" rows="3" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Scrivi un commento" required></textarea>
                         </div>

@@ -5,7 +5,8 @@
         <div class="flex items-center @if (auth()->check() && auth()->user()->id === $comment->user_id) text-base font-semibold text-gray-900 @else text-base text-gray-500 @endif">
             <x-feathericon-message-square class="h-5 mr-1 -ml-0.5" />
             <p class="">
-                {{ $comment->author->name }}</p>
+                {{ $comment->author->name }}
+            </p>
         </div>
         <div>
             <form method="POST" action="{{ route('comments.destroy', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
@@ -22,16 +23,33 @@
             </form>
         </div>
     </div>
-    <p class="text-gray-700">{{ $comment->content }}</p>
+    <div class="mb-3 mt-1 text-justify">
+        <p class="text-gray-700">{{ $comment->content }}</p>
+    </div>
+    @if ($comment->attachments->count() > 0)
+        <div class="items-center px-3 py-2 mb-3 border-l-4 border-solid border-gray-500">
+            <div class="flex items-center">
+                <x-feathericon-paperclip class="h-3 -mr-0.5" />
+                <h2 class="text-xs text-gray-500">Allegati:</h2><br>
+            </div>
+            <div>
+                @foreach ($comment->attachments as $attachment)
+                    <a type="button" target="_blank" href="{{ route('attachments.show', ['group' => $comment->post->group, 'post' => $comment->post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}"
+                       class="px-2 py-1 m-1 text-white text-2xs bg-gray-500 rounded-md hover:bg-gray-400 hover:underline">{{ $attachment->file_name }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
     @if ($comment->replies->count() > 0)
-        <div class="border-l-4 border-l-gray-800 ml-0 mt-3 mb-4 bg-white space-y-2">
+        <div class="border-l-4 border-l-gray-800 ml-0 mb-4 bg-white space-y-2">
             @foreach($comment->replies as $reply)
                 <div class="border-b-2 border-l-gray-400 px-4 py-2">
                     <div class="flex items-center mb-2 @if(auth()->check() && auth()->user()->id === $reply->user_id) text-sm font-semibold text-gray-900 @else text-sm text-gray-500 @endif">
                         <x-feathericon-corner-left-up class="h-4 -ml-1.5" />
                         <p class="">{{ $reply->author->name }}</p>
                     </div>
-                    <div class="flex">
+                    <div class="flex text-justify">
                         <p class="text-gray-700">{{ $reply->content }}</p>
                     </div>
                     <div class="flex justify-end items-center -mr-4">
@@ -54,7 +72,7 @@
     @endif
     <form method="post" action="{{ route('replies.store', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
         @csrf
-        <div class="mb-2">
+        <div class="-mt-2 mb-2">
             <textarea name="content" id="content" rows="2" class="shadow-sm text-sm w-full px-4 py-2 mt-3 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
         </div>
         <div class="flex justify-end">

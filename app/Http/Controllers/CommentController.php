@@ -13,6 +13,7 @@ class CommentController extends Controller
     {
         $request->validate([
             'content' => 'required|string',
+            'attachment' => 'file|mimes:pdf,docx,doc,xls,xlsx,ppt,pptx,jpg,png,gif,mp3,mp4,avi,zip,rar,7z,txt,rtf,md',
         ]);
 
         $comment = new Comment();
@@ -20,6 +21,20 @@ class CommentController extends Controller
         $comment->user_id = auth()->user()->id;
         $comment->post_id = $post->id;
         $comment->save();
+
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $commentId = $comment->id;
+                $fileName = $attachment->getClientOriginalName();
+                $filePath = $attachment->store('attachments', 'public');
+                $comment->attachments()->create([
+                    'file_name' => $fileName,
+                    'file_path' => $filePath,
+                    'attachable_id' => $commentId,
+                    'attachable_type' => Comment::class,
+                ]);
+            }
+        }
 
         return redirect()->route('posts.show', ['group' => $group, 'post' => $post])
             ->with('success', 'Commento inviato con successo!');

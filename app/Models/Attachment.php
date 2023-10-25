@@ -12,11 +12,12 @@ class Attachment extends Model
     protected $fillable = [
         'file_name',
         'file_path',
-        'post_id',
+        'attachable_id',
+        'attachable_type',
     ];
 
-    public function post()
+    public function attachable()
     {
-        return $this->belongsTo(Post::class);
+        return $this->morphTo();
     }
 }

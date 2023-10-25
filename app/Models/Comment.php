@@ -30,4 +30,9 @@ class Comment extends Model
         return $this->hasMany(Reply::class, 'parent_id');
     }
 
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
+
 }

@@ -33,7 +33,7 @@ class Post extends Model
 
     public function attachments()
     {
-        return $this->hasMany(Attachment::class);
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 
     public function checkAuthor($userId)

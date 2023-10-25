@@ -53,7 +53,8 @@ class PostController extends Controller
                 $post->attachments()->create([
                     'file_name' => $fileName,
                     'file_path' => $filePath,
-                    'post_id' => $postId,
+                    'attachable_id' => $postId,
+                    'attachable_type' => Post::class,
                 ]);
             }
         }

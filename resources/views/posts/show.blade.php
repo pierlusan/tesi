@@ -49,10 +49,10 @@
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 pb-6 mt-6">
-                <form method="POST" action="{{ route('comments.store', ['group' => $group, 'post' => $post]) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('comments.store', ['group' => $group, 'post' => $post]) }}">
                     @csrf
                     <div class="flex justify-between items-center">
-                        <h3 class="text-2xl font-semibold mb-4 my-4">
+                        <h3 class="text-2xl font-semibold my-4">
                             Commenti
                             <span class="inline-block bg-gray-700 text-white rounded px-1.5 -py-1 ml-1.5" style="font-size: 0.6em">
                                 {{ $post->comments->count() }}
@@ -62,7 +62,15 @@
                             Commenta
                         </x-primary-button>
                     </div>
-                    <textarea name="content" id="content" rows="3" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Scrivi un commento" required></textarea>
+                    <div class="p-4 bg-gray-100 border rounded-md border-gray-300 shadow-md">
+                        <div class="w-full mb-4">
+                            <textarea name="content" id="content" rows="3" class="shadow-md w-full px-4 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500" placeholder="Scrivi un commento" required></textarea>
+                        </div>
+                        <div class="w-full mb-4">
+                            <label for="attachments" class="block text-gray-600 mb-2">Allegati <span class="text-xs text-gray-600">(max: 128MB)</span></label>
+                            <input type="file" name="attachments[]" id="attachments" class="w-full h-full border border-solid rounded-md border-gray-300 file:mr-4 file:uppercase file:px-8 file:py-3 file:border-0 file:rounded-l-md file:font-semibold file:text-white file:text-xs file:tracking-widest file:bg-gray-800 hover:file:bg-gray-700 hover:file:cursor-pointer" multiple>
+                        </div>
+                    </div>
                 </form>
                 @foreach($post->comments as $comment)
                         <x-comment :comment="$comment" />

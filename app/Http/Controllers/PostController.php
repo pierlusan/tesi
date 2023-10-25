@@ -64,12 +64,14 @@ class PostController extends Controller
 
     public function destroy(Group $group, Post $post)
     {
-        if (!auth()->user()->isAdmin()  && $post->user() !== auth()->user()) {
+        $user = auth()->user();
+        if (auth()->user()->isAdmin() || $user->isAuthor($post)) {
+            $post->delete();
+            return redirect()->route('posts.index', ['group' => $group])
+                ->with('success', 'Il post è stato eliminato con successo.');
+        } else {
             abort(403, 'Non sei autorizzato a eliminare questo post.');
         }
-        $post->delete();
-        return redirect()->route('posts.index', ['group' => $group])
-            ->with('success', 'Il post è stato eliminato con successo.');
     }
 
 }

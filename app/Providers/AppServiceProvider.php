@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $pendingUsersCount = User::where('approved', 0)->count();
-
         View::share('pendingUsersCount', $pendingUsersCount);
     }
 }

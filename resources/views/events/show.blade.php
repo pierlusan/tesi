@@ -11,22 +11,44 @@
                 <x-group-menu :group="$group" />
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-1 -mt-1 flex justify-between items-center">
-                        <h2 class="text-xl font-semibold">In programma il <span class="text-red-500">{{ $event->date->format('d/m/Y') }}</span> alle <span class="text-red-500">{{ $event->date->format('H:i') }}</span></h2>
-                        <p class="text-gray-600 text-xs">{{ $event->created_at->format('d/m/Y H:i') }}</p>
+                        @switch($event->status)
+                            @case(\App\Enum\EventStatus::PLANNED)
+                                <h2 class="text-xl font-semibold">In programma il <span class="text-amber-500">{{ $event->date->format('d/m/Y') }}</span> alle <span class="text-amber-500">{{ $event->date->format('H:i') }}</span></h2>
+                                @break
+                            @case(\App\Enum\EventStatus::ACTIVE)
+                                <h2 class="text-xl font-semibold"><span class="text-emerald-500">Attivo</span> dalle <span class="text-emerald-500">{{ $event->date->format('H:i') }}</span></h2>
+                                @break
+                            @case(\App\Enum\EventStatus::COMPLETED)
+                                <h2 class="text-xl font-semibold"><span class="text-indigo-500">Concluso</span> il <span class="text-indigo-500">{{ $event->date->format('d/m/Y') }}</span></h2>
+                                @break
+                            @case(\App\Enum\EventStatus::CANCELED)
+                                <h2 class="text-xl font-semibold"><span class="text-red-500">Evento cancellato</span></h2>
+                                @break
+                        @endswitch
+                        <p class="text-gray-600 text-xs">Creato il {{ $event->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                     <h2 class="text-2xl font-semibold">{{ $event->title }}</h2>
                     <p class="text-gray-700 text-justify">{{ $event->description }}</p>
 
                     <div class="mt-4 flex justify-between items-center">
-                        <p class="text-sm text-gray-400 -mb-1">Pianificato da da {{ $event->user->name }} in
+                        <p class="text-sm text-gray-400 -mb-1">Pianificato da {{ $event->user->name }} in
                             <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-700 hover:text-gray-500">{{ $event->group->name }}</a>
                         </p>
-                        @if (auth()->user()->isAdmin())
+                        @if (auth()->user()->isAdmin() && $event->status->isPlanned())
                             <form action="{{ route('events.cancel', ['group' => $group,'event' => $event]) }}" method="POST">
                                 @csrf
                                 <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler annullare questo evento?')">
                                     <!-- <x-feathericon-trash-2 /> -->
                                     Cancella
+                                </x-danger-button>
+                            </form>
+                        @elseif (auth()->user()->isAdmin() && $event->status->isCanceled())
+                            <form action="{{ route('events.destroy', ['group' => $group,'event' => $event]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler eliminare definitivamente questo evento?')">
+                                    <!-- <x-feathericon-trash-2 /> -->
+                                    Elimina definitivamente
                                 </x-danger-button>
                             </form>
                         @endif

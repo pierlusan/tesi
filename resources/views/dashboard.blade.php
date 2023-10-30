@@ -39,7 +39,7 @@
                             var statusElement = document.createElement('span');
                             statusElement.textContent = status;
                             content.appendChild(statusElement);
-                            statusElement.classList.add('text-2xs', 'text-white', 'uppercase', 'p-1', 'rounded-sm');
+                            statusElement.classList.add('text-2xs', 'text-white', 'uppercase', 'font-semibold', 'p-1', 'rounded-sm');
                             switch (status) {
                                 case 'planned':
                                     statusElement.classList.add('bg-amber-600');

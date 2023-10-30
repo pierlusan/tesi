@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\EventStatus;
 use App\Models\Event;
 use App\Models\Group;
 use Carbon\Carbon;
@@ -50,14 +51,24 @@ class EventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
-    public function destroy(Group $group, Event $event)
+    public function cancel(Group $group, Event $event)
     {
         if (!auth()->user()->isAdmin()) {
             abort(403, 'Non sei autorizzato a canecllare questo evento.');
         }
+        $event->status = EventStatus::CANCELED;
+        $event->save();
+        return redirect()->back()->with('success', 'Evento cancellato con successo.');
+    }
+
+    public function destroy(Group $group, Event $event)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato ad eliminare questo evento.');
+        }
         $event->delete();
         return redirect()->route('events.index', ['group' => $group])
-            ->with('success', 'Il post è stato eliminato con successo.');
+            ->with('success', 'Evento eliminato con successo.');
     }
 
 

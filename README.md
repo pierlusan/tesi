@@ -78,4 +78,10 @@
    ```bash
    php artisan serve
    ```
-3. **Accedi al progetto**: Una volta eseguiti tutti i passi, sarà possibile accedere al progetto tramite browser dall'indirizzo `http://127.0.0.1:8000`.
+
+3. **Attiva gli scheduler**: Per far sì che il database aggiorni automaticamente gli stati degli eventi, esegui il seguente comando:
+   ```bash
+   php artisan schedule:work
+   ```
+   
+4. **Accedi al progetto**: Una volta eseguiti tutti i passi, sarà possibile accedere al progetto tramite browser dall'indirizzo `http://127.0.0.1:8000`.

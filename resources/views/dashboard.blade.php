@@ -31,13 +31,36 @@
                         var group = arg.event.extendedProps.group;
                         var name = arg.event.title;
                         var date = arg.timeText;
+                        var status = arg.event.extendedProps.status;
                         var content = document.createElement('div');
+
+
+                        if (status) {
+                            var statusElement = document.createElement('span');
+                            statusElement.textContent = status;
+                            content.appendChild(statusElement);
+                            statusElement.classList.add('text-2xs', 'text-white', 'uppercase', 'p-1', 'rounded-sm');
+                            switch (status) {
+                                case 'planned':
+                                    statusElement.classList.add('bg-indigo-600');
+                                    break;
+                                case 'completed':
+                                    statusElement.classList.add('bg-gray-600');
+                                    break;
+                                case 'canceled':
+                                    statusElement.classList.add('bg-red-600');
+                                    break;
+                                case 'active':
+                                    statusElement.classList.add('bg-emerald-600');
+                                    break;
+                            }
+                        }
 
                         if (name) {
                             var nameElement = document.createElement('div');
                             nameElement.textContent = name;
                             content.appendChild(nameElement);
-                            nameElement.classList.add('text-sm', 'font-semibold', 'text-white');
+                            nameElement.classList.add('text-sm', 'font-semibold', 'text-white', 'mt-1');
                         }
 
                         if (date) {
@@ -55,18 +78,6 @@
                         }
 
                         return { domNodes: [content] };
-                    },
-                    eventRender: function (arg) {
-                        var status = arg.event.extendedProps.status;
-                        if (status === 'completed') {
-                            arg.el.style.backgroundColor = 'green'; // Imposta il colore di sfondo in base allo stato
-                        } else if (status === 'active') {
-                            arg.el.style.backgroundColor = 'blue';
-                        } else if (status === EventStatus::CANCELED) {
-                            arg.el.style.backgroundColor = 'red';
-                        } else if ( status === EventStatus::PLANNED){
-                            arg.el.style.backgroundColor = 'blue';
-                        }
                     },
                 });
                 calendar.render();

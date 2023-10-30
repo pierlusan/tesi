@@ -1,8 +1,8 @@
 .fc-event {
     background-color: #1f2937;
     color: #fff;
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 8px;
+    margin: 6px;
 }
 
 .fc-event:hover {

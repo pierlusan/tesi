@@ -22,10 +22,9 @@
                             <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-700 hover:text-gray-500">{{ $event->group->name }}</a>
                         </p>
                         @if (auth()->user()->isAdmin())
-                            <form action="{{ route('events.destroy', ['group' => $group, 'event' => $event]) }}" method="POST">
+                            <form action="{{ route('events.cancel', ['group' => $group,'event' => $event]) }}" method="POST">
                                 @csrf
-                                @method('DELETE')
-                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler cancellare questo evento?')">
+                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler annullare questo evento?')">
                                     <!-- <x-feathericon-trash-2 /> -->
                                     Cancella
                                 </x-danger-button>

@@ -27,9 +27,9 @@
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-2 flex items-center justify-center mr-4">
                                                 <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',
-                                                    'bg-indigo-600' => $event->status->isPlanned(),
+                                                    'bg-amber-600' => $event->status->isPlanned(),
                                                     'bg-emerald-600' => $event->status->isActive(),
-                                                    'bg-gray-700' => $event->status->isCompleted(),
+                                                    'bg-indigo-600' => $event->status->isCompleted(),
                                                     'bg-red-600' => $event->status->isCanceled(),])>
                                                     {{ $event->status }}
                                                 </span>

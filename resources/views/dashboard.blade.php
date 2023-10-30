@@ -42,10 +42,10 @@
                             statusElement.classList.add('text-2xs', 'text-white', 'uppercase', 'p-1', 'rounded-sm');
                             switch (status) {
                                 case 'planned':
-                                    statusElement.classList.add('bg-indigo-600');
+                                    statusElement.classList.add('bg-amber-600');
                                     break;
                                 case 'completed':
-                                    statusElement.classList.add('bg-gray-600');
+                                    statusElement.classList.add('bg-indigo-600');
                                     break;
                                 case 'canceled':
                                     statusElement.classList.add('bg-red-600');

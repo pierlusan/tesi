@@ -13,16 +13,16 @@
                     <div class="mb-1 -mt-1 flex justify-between items-center">
                         @switch($event->status)
                             @case(\App\Enum\EventStatus::PLANNED)
-                                <h2 class="text-xl font-semibold">In programma il <span class="text-amber-500">{{ $event->date->format('d/m/Y') }}</span> alle <span class="text-amber-500">{{ $event->date->format('H:i') }}</span></h2>
+                                <h2 class="text-xl font-semibold">In programma il <span class="text-amber-600">{{ $event->date->format('d/m/Y') }}</span> alle <span class="text-amber-600">{{ $event->date->format('H:i') }}</span></h2>
                                 @break
                             @case(\App\Enum\EventStatus::ACTIVE)
-                                <h2 class="text-xl font-semibold"><span class="text-emerald-500">Attivo</span> dalle <span class="text-emerald-500">{{ $event->date->format('H:i') }}</span></h2>
+                                <h2 class="text-xl font-semibold"><span class="text-emerald-600">Attivo</span> dalle <span class="text-emerald-600">{{ $event->date->format('H:i') }}</span></h2>
                                 @break
                             @case(\App\Enum\EventStatus::COMPLETED)
-                                <h2 class="text-xl font-semibold"><span class="text-indigo-500">Concluso</span> il <span class="text-indigo-500">{{ $event->date->format('d/m/Y') }}</span></h2>
+                                <h2 class="text-xl font-semibold"><span class="text-indigo-600">Concluso</span> il <span class="text-indigo-600">{{ $event->date->format('d/m/Y') }}</span></h2>
                                 @break
                             @case(\App\Enum\EventStatus::CANCELED)
-                                <h2 class="text-xl font-semibold"><span class="text-red-500">Evento cancellato</span></h2>
+                                <h2 class="text-xl font-semibold"><span class="text-red-600">Evento cancellato</span></h2>
                                 @break
                         @endswitch
                         <p class="text-gray-600 text-xs">Creato il {{ $event->created_at->format('d/m/Y H:i') }}</p>

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -16,9 +17,13 @@ class Controller extends BaseController
     public function dashboard()
     {
         $events = [];
+        $user = Auth::user();
+        $userGroups = $user->groups;
 
-        $appointments = Event::whereNotNull('date')->get();
-        $groups = Group::whereNotNull('id')->get();
+        $appointments = Event::whereIn('group_id', $userGroups->pluck('id')->toArray())
+            ->whereNotNull('date')
+            ->get();
+        //$groups = Group::whereNotNull('id')->get();
 
         foreach ($appointments as $appointment) {
             $events[] = [
@@ -34,6 +39,6 @@ class Controller extends BaseController
                 ],
             ];
         }
-        return view('dashboard', ['events' => $events, 'groups' => $groups]);
+        return view('dashboard', ['events' => $events, 'groups' => $userGroups]);
     }
 }

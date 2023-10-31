@@ -34,7 +34,6 @@
                         var status = arg.event.extendedProps.status;
                         var content = document.createElement('div');
 
-
                         if (status) {
                             var statusElement = document.createElement('span');
                             statusElement.textContent = status;

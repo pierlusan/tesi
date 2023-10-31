@@ -51,6 +51,16 @@ class EventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
+    public function end(Group $group, Event $event)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato a terminare questo evento.');
+        }
+        $event->status = EventStatus::COMPLETED;
+        $event->save();
+        return redirect()->back()->with('success', 'Evento terminato con successo.');
+    }
+
     public function cancel(Group $group, Event $event)
     {
         if (!auth()->user()->isAdmin()) {

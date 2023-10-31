@@ -79,12 +79,15 @@ Route::get('/groups/{group}/events-create', [EventController::class, 'create'])
 Route::post('/groups/{group}/events', [EventController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.store');
-Route::post('/groups/{group}/events/{event}', [EventController::class, 'cancel'])
-    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
-    ->name('events.cancel');
 Route::delete('/groups/{group}/events/{event}', [EventController::class, 'destroy'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.destroy');
+Route::post('/groups/{group}/events/{event}/end', [EventController::class, 'end'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('events.end');
+Route::post('/groups/{group}/events/{event}/cancel', [EventController::class, 'cancel'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('events.cancel');
 
 // Posts
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])

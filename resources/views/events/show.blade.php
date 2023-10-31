@@ -35,7 +35,7 @@
                             <a href="{{ route('groups.show', ['group' => $group]) }}" class="underline text-gray-700 hover:text-gray-500">{{ $event->group->name }}</a>
                         </p>
                         @if (auth()->user()->isAdmin() && $event->status->isPlanned())
-                            <form action="{{ route('events.cancel', ['group' => $group,'event' => $event]) }}" method="POST">
+                            <form action="{{ route('events.cancel', ['group' => $group, 'event' => $event]) }}" method="POST">
                                 @csrf
                                 <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler annullare questo evento?')">
                                     <!-- <x-feathericon-trash-2 /> -->
@@ -43,12 +43,20 @@
                                 </x-danger-button>
                             </form>
                         @elseif (auth()->user()->isAdmin() && $event->status->isCanceled())
-                            <form action="{{ route('events.destroy', ['group' => $group,'event' => $event]) }}" method="POST">
+                            <form action="{{ route('events.destroy', ['group' => $group, 'event' => $event]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler eliminare definitivamente questo evento?')">
                                     <!-- <x-feathericon-trash-2 /> -->
                                     Elimina definitivamente
+                                </x-danger-button>
+                            </form>
+                        @elseif (auth()->user()->isAdmin() && $event->status->isActive())
+                            <form action="{{ route('events.end', ['group' => $group, 'event' => $event]) }}" method="POST">
+                                @csrf
+                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler terminare questo evento?')">
+                                    <!-- <x-feathericon-trash-2 /> -->
+                                    Termina
                                 </x-danger-button>
                             </form>
                         @endif

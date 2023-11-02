@@ -3,24 +3,24 @@
 namespace App\Console\Commands;
 
 use App\Enum\EventStatus;
-use App\Models\Event;
+use App\Models\SingleEvent;
 use Illuminate\Console\Command;
 
-class UpdateEventStatus extends Command
+class UpdateSingleEventStatus extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:event-status';
+    protected $signature = 'update:single-event-status';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Aggiorna lo stato degli eventi nei gruppi';
+    protected $description = 'Aggiorna lo stato degli eventi singoli';
 
     /**
      * Execute the console command.
@@ -29,7 +29,7 @@ class UpdateEventStatus extends Command
     {
         $now = now();
 
-        $plannedEvents = Event::where('status', EventStatus::PLANNED)
+        $plannedEvents = SingleEvent::where('status', EventStatus::PLANNED)
             ->where('date', '<=', $now)
             ->get();
         foreach ($plannedEvents as $event) {
@@ -37,7 +37,7 @@ class UpdateEventStatus extends Command
             $event->save();
         }
 
-        $activeEvents = Event::where('status', EventStatus::ACTIVE)
+        $activeEvents = SingleEvent::where('status', EventStatus::ACTIVE)
             ->where('date', '<=', $now->subHours(12))
             ->get();
         foreach ($activeEvents as $event) {
@@ -45,7 +45,7 @@ class UpdateEventStatus extends Command
             $event->save();
         }
 
-        $canceledEvents = Event::where('status', EventStatus::CANCELED)
+        $canceledEvents = SingleEvent::where('status', EventStatus::CANCELED)
             ->where('date', '<=', $now->subDays(3))
             ->get();
         foreach ($canceledEvents as $event) {

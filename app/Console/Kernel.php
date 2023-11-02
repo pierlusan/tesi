@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('update:event-status')->everyFifteenSeconds();
+        $schedule->command('update:event-status')->everyThirtySeconds();
+        $schedule->command('update:single-event-status')->everyThirtySeconds();
         // $schedule->command('inspire')->hourly();
     }
 

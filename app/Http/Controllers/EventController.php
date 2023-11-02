@@ -12,7 +12,10 @@ class EventController extends Controller
 {
     public function index(Group $group)
     {
-        $events = $group->events()->latest()->get();
+        $events = $group->events()
+            ->orderByRaw("FIELD(status, 'active', 'planned', 'completed', 'canceled')")
+            ->orderBy('date', 'asc')
+            ->get();
         return view('events.index', ['events' => $events, 'group' => $group]);
     }
 

@@ -7,12 +7,24 @@ use App\Models\SingleEvent;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SingleEventController extends Controller
 {
     public function index()
     {
-        $singleEvents = SingleEvent::whereNotNull('date')->get();
+        $user = Auth::user();
+        if ($user->isAdmin()){
+            $singleEvents = SingleEvent::whereNotNull('date')
+                ->orderByRaw("FIELD(status, 'active', 'planned', 'completed', 'canceled')")
+                ->orderBy('date', 'asc')
+                ->get();
+        } else{
+            $singleEvents = $user->singleEvents()
+                ->orderByRaw("FIELD(status, 'active', 'planned', 'completed', 'canceled')")
+                ->orderBy('date', 'asc')
+                ->get();
+        }
         return view('single_events.index', ['singleEvents' => $singleEvents]);
     }
 

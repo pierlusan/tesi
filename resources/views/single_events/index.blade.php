@@ -22,7 +22,7 @@
                         <ul class="list-none space-y-4">
                             @foreach ($singleEvents as $singleEvent)
                                 <li>
-                                    <a href="#" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
+                                    <a href="{{ route('single_events.show', ['singleEvent' => $singleEvent]) }}" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-2 flex items-center justify-center mr-4">
                                                 <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',

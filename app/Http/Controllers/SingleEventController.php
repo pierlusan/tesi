@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\EventStatus;
 use App\Models\SingleEvent;
 use App\Models\User;
 use Carbon\Carbon;
@@ -13,6 +14,14 @@ class SingleEventController extends Controller
     {
         $singleEvents = SingleEvent::whereNotNull('date')->get();
         return view('single_events.index', ['singleEvents' => $singleEvents]);
+    }
+
+    public function show(SingleEvent $singleEvent)
+    {
+        if (!$singleEvent) {
+            abort(404, 'Evento non trovato.');
+        }
+        return view('single_events.show', ['singleEvent' => $singleEvent]);
     }
 
     public function create()
@@ -43,6 +52,36 @@ class SingleEventController extends Controller
 
         return redirect()->route('single_events.index')
             ->with('success', 'Evento creato con successo');
+    }
+
+    public function end(SingleEvent $singleEvent)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato a terminare questo evento.');
+        }
+        $singleEvent->status = EventStatus::COMPLETED;
+        $singleEvent->save();
+        return redirect()->back()->with('success', 'Evento terminato con successo.');
+    }
+
+    public function cancel(SingleEvent $singleEvent)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato a canecllare questo evento.');
+        }
+        $singleEvent->status = EventStatus::CANCELED;
+        $singleEvent->save();
+        return redirect()->back()->with('success', 'Evento cancellato con successo.');
+    }
+
+    public function destroy(SingleEvent $singleEvent)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Non sei autorizzato ad eliminare questo evento.');
+        }
+        $singleEvent->delete();
+        return redirect()->route('single_events.index')
+            ->with('success', 'Evento eliminato con successo.');
     }
 
 }

@@ -94,12 +94,24 @@ Route::post('/groups/{group}/events/{event}/cancel', [EventController::class, 'c
 Route::get('/single-events', [SingleEventController::class, 'index'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('single_events.index');
+Route::get('/single-events/{singleEvent}', [SingleEventController::class, 'show'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('single_events.show');
 Route::get('/single-events-create', [SingleEventController::class, 'create'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('single_events.create');
 Route::post('/single-events', [SingleEventController::class, 'store'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('single_events.store');
+Route::delete('/single-events/{singleEvent}', [SingleEventController::class, 'destroy'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('single_events.destroy');
+Route::post('/single-events/{singleEvent}/end', [SingleEventController::class, 'end'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('single_events.end');
+Route::post('/single-events/{singleEvent}/cancel', [SingleEventController::class, 'cancel'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('single_events.cancel');
 
 // Posts
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])

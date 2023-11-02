@@ -41,6 +41,7 @@
                                                     {{ $singleEvent->description }}
                                                 </div>
                                                 <div class="text-gray-400 text-sm mt-2">
+                                                    Insieme a {{ $singleEvent->client->name }}<br>
                                                     Data: {{ $singleEvent->date->format('d/m/Y H:i') }}
                                                 </div>
                                             </div>

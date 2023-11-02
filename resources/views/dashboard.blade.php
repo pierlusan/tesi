@@ -60,6 +60,7 @@
                         var name = arg.event.title;
                         var date = arg.timeText;
                         var status = arg.event.extendedProps.status;
+                        var client = arg.event.extendedProps.client;
                         var content = document.createElement('div');
                         if (status) {
                             var statusElement = document.createElement('span');
@@ -92,6 +93,12 @@
                             dateElement.textContent = date;
                             content.appendChild(dateElement);
                             dateElement.classList.add('text-xs', 'text-white');
+                        }
+                        if (client) {
+                            var clientElement = document.createElement('div');
+                            clientElement.textContent = client;
+                            content.appendChild(clientElement);
+                            clientElement.classList.add('text-xs', 'text-white');
                         }
                         if (group) {
                             var groupElement = document.createElement('div');

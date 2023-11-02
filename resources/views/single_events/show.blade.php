@@ -29,7 +29,7 @@
                     <p class="text-gray-700 text-justify">{{ $singleEvent->description }}</p>
 
                     <div class="mt-4 flex justify-between items-center">
-                        <p class="text-sm text-gray-400 -mb-1">Pianificato con {{ $singleEvent->user->name }}
+                        <p class="text-sm text-gray-400 -mb-1">Pianificato con {{ $singleEvent->client->name }}
                         </p>
                         @if (auth()->user()->isAdmin() && $singleEvent->status->isPlanned())
                             <form action="{{ route('single_events.cancel', ['singleEvent' => $singleEvent]) }}" method="POST">

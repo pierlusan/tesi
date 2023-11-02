@@ -14,7 +14,7 @@ class SingleEventController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->isAdmin()){
+        if ($user->isAdmin()) {
             $singleEvents = SingleEvent::whereNotNull('date')
                 ->orderByRaw("FIELD(status, 'active', 'planned', 'completed', 'canceled')")
                 ->orderBy('date', 'asc')

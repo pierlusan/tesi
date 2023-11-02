@@ -10,6 +10,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\SingleEventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,6 +89,17 @@ Route::post('/groups/{group}/events/{event}/end', [EventController::class, 'end'
 Route::post('/groups/{group}/events/{event}/cancel', [EventController::class, 'cancel'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.cancel');
+
+// SingleEvents
+Route::get('/single-events', [SingleEventController::class, 'index'])
+    ->middleware(['auth', 'verified', 'approved'])
+    ->name('single_events.index');
+Route::get('/single-events-create', [SingleEventController::class, 'create'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('single_events.create');
+Route::post('/single-events', [SingleEventController::class, 'store'])
+    ->middleware(['auth', 'verified', 'approved', 'is_admin'])
+    ->name('single_events.store');
 
 // Posts
 Route::get('/groups/{group}/posts', [PostController::class, 'index'])

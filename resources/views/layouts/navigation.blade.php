@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
                             {{ __('Gruppi') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('single_events.index')" :active="request()->routeIs('single_events.index')">
+                            {{ __('Eventi Personali') }}
+                        </x-nav-link>
                     @endif
                     @if (Auth::user()->is_admin)
                         <x-nav-link :href="route('admin.pending_users')" :active="request()->routeIs('admin.pending_users')">

@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasMany(Event::class);
     }
 
+    public function singleEvents()
+    {
+        return $this->hasMany(SingleEvent::class);
+    }
+
     public function isAdmin(): bool
     {
         return $this->is_admin == true;

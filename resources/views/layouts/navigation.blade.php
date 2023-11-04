@@ -21,6 +21,9 @@
                         </x-nav-link>
                         <x-nav-link :href="route('single_events.index')" :active="request()->routeIs('single_events.index')">
                             {{ __('Eventi Personali') }}
+                            <span class="inline-block bg-gray-700 text-white rounded px-1.5 ml-1.5" style="font-size: 0.65em">
+                                {{ \App\Models\SingleEvent::all()->count() }}
+                            </span>
                         </x-nav-link>
                     @endif
                     @if (Auth::user()->is_admin)

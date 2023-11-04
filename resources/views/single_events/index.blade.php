@@ -9,7 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold"><span class="font-normal">Eventi personali</span></h1>
+                        <h1 class="text-2xl font-semibold"><span class="font-semibold">Eventi personali</span></h1>
                         @if (Auth::user()->isAdmin())
                             <form action=" {{ route('single_events.create') }} " method="GET">
                                 <x-primary-button>

@@ -17,6 +17,16 @@
                                 @break
                             @case(\App\Enum\EventStatus::ACTIVE)
                                 <h2 class="text-xl font-semibold"><span class="text-emerald-600">Attivo</span> dalle <span class="text-emerald-600">{{ $event->date->format('H:i') }}</span></h2>
+                                <form id="lobby__form">
+                                    <div class="form__field__wrapper">
+                                        <input type="hidden" name="name" value="{{auth()->user()->name}}" />
+                                    </div>
+                                    <div class="form__field__wrapper">
+                                        <input type="hidden" name="room" value="{{$event->id}}"/>
+                                    </div>
+                                    <div id="greenDot"></div>
+                                    <x-primary-button type="submit">Vai alla stanza</x-primary-button>
+                                </form>
                                 @break
                             @case(\App\Enum\EventStatus::COMPLETED)
                                 <h2 class="text-xl font-semibold"><span class="text-indigo-600">Concluso</span> il <span class="text-indigo-600">{{ $event->date->format('d/m/Y') }}</span></h2>
@@ -66,3 +76,56 @@
         </div>
     </div>
 </x-app-layout>
+
+<style>
+    #greenDot {
+        width: 20px;
+        height: 20px;
+        background-color: green;
+        border-radius: 50%; /* Per ottenere una forma circolare */
+        display: none; /* Inizialmente nascosto */
+    }
+</style>
+
+<script src={{asset("agora-rtm-sdk-1.5.1.js")}}></script>
+
+<script>
+    let form = document.getElementById('lobby__form')
+    let displayname = sessionStorage.getItem('display_name')
+    if (displayname){
+        form.name.value = displayname
+    }
+    form.addEventListener('submit',(e) => {
+        e.preventDefault()
+        sessionStorage.setItem('display_name', e.target.name.value)
+        let invitecode = e.target.room.value
+        if (!invitecode){
+            invitecode= String(Math.floor(Math.random() * 10000))
+        }
+        window.location.href =  `/room?room=${invitecode}`})
+</script>
+
+<script>
+    async function check(){
+        let token =null
+        const App_ID="c4e01afaa134412b85a0be9679574954"
+        rtmClient =  AgoraRTM.createInstance(App_ID)
+        let uid=String(Math.floor(Math.random() * 10000))
+        await rtmClient.login({uid,token})
+        await rtmClient.addOrUpdateLocalUserAttributes({'name':'{{auth()->user()->name}}'})
+
+        channel =  await rtmClient.createChannel('{{$group->name}}')
+        await channel.join()
+        let members =  await channel.getMembers()
+        console.log('membri',members.length)
+        await channel.leave()
+        await rtmClient.logout()
+        if(members >= 1){
+            document.getElementById("greenDot").style.display = "none";
+
+        } else{
+            document.getElementById("greenDot").style.display = "block";
+        }
+    }
+    check()
+</script>

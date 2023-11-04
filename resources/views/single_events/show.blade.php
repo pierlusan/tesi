@@ -15,6 +15,18 @@
                                 @break
                             @case(\App\Enum\EventStatus::ACTIVE)
                                 <h2 class="text-xl font-semibold"><span class="text-emerald-500">Attivo</span> dalle <span class="text-emerald-500">{{ $singleEvent->date->format('H:i') }}</span></h2>
+                                <form id="singlecall__form">
+                                    <div class="form__field__wrapper">
+                                        <input type="hidden" name="name" value="{{auth()->user()->name}}" />
+                                    </div>
+                                    <div class="form__field__wrapper">
+                                        <input type="hidden" name="room"  value="singlecall" />
+                                    </div>
+                                    <div id="greenDot"></div>
+                                    <x-primary-button type="submit">
+                                        Vai alla lobby
+                                    </x-primary-button>
+                                </form>
                                 @break
                             @case(\App\Enum\EventStatus::COMPLETED)
                                 <h2 class="text-xl font-semibold"><span class="text-indigo-500">Concluso</span> il <span class="text-indigo-500">{{ $singleEvent->date->format('d/m/Y') }}</span></h2>
@@ -63,3 +75,21 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    let forms = document.getElementById('singlecall__form')
+    let displayName = sessionStorage.getItem('display_name1')
+    if(displayName){
+        forms.name.value = displayName
+    }
+    forms.addEventListener('submit', (e) => {
+            e.preventDefault()
+            sessionStorage.setItem('display_name1', e.target.name.value)
+            let inviteCode = e.target.room.value
+            if(!inviteCode){
+                inviteCode = String(Math.floor(Math.random() * 10000))
+            }
+            window.location.href = '/lobby?inviteCode=' + inviteCode;
+        }
+    )
+</script>

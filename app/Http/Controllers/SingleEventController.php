@@ -66,6 +66,10 @@ class SingleEventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
+    public function lobby(){
+        return view('single_events.lobby');
+    }
+
     public function end(SingleEvent $singleEvent)
     {
         if (!auth()->user()->isAdmin()) {

@@ -54,6 +54,10 @@ class EventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
+    public function room(){
+        return view('events.room');
+    }
+
     public function end(Group $group, Event $event)
     {
         if (!auth()->user()->isAdmin()) {
@@ -83,6 +87,5 @@ class EventController extends Controller
         return redirect()->route('events.index', ['group' => $group])
             ->with('success', 'Evento eliminato con successo.');
     }
-
 
 }

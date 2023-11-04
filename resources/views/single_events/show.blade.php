@@ -77,6 +77,7 @@
 </x-app-layout>
 
 <script>
+    var singleEventId = {{ $singleEvent->id }}
     let forms = document.getElementById('singlecall__form')
     let displayName = sessionStorage.getItem('display_name1')
     if(displayName){
@@ -89,7 +90,7 @@
             if(!inviteCode){
                 inviteCode = String(Math.floor(Math.random() * 10000))
             }
-            window.location.href = '/lobby?inviteCode=' + inviteCode;
+            window.location.href = `/single-events/${singleEventId}/lobby?inviteCode=` + inviteCode;
         }
     )
 </script>

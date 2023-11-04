@@ -54,7 +54,7 @@ class EventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
-    public function room(){
+    public function room(Group $group, Event $event){
         return view('events.room');
     }
 

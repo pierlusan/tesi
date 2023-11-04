@@ -66,7 +66,7 @@ class SingleEventController extends Controller
             ->with('success', 'Evento creato con successo');
     }
 
-    public function lobby(){
+    public function lobby(SingleEvent $singleEvent){
         return view('single_events.lobby');
     }
 

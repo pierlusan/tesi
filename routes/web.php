@@ -88,8 +88,8 @@ Route::post('/groups/{group}/events/{event}/end', [EventController::class, 'end'
 Route::post('/groups/{group}/events/{event}/cancel', [EventController::class, 'cancel'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('events.cancel');
-Route::get('/room', [EventController::class, 'room'])
-    //->middleware(['auth', 'verified', 'approved', 'is_member'])
+Route::get('groups/{group}/events/{event}/room', [EventController::class, 'room'])
+    ->middleware(['auth', 'verified', 'approved', 'is_member'])
     ->name('events.room');
 
 // SingleEvents
@@ -114,7 +114,7 @@ Route::post('/single-events/{singleEvent}/end', [SingleEventController::class, '
 Route::post('/single-events/{singleEvent}/cancel', [SingleEventController::class, 'cancel'])
     ->middleware(['auth', 'verified', 'approved', 'is_admin'])
     ->name('single_events.cancel');
-Route::get('/lobby', [SingleEventController::class, 'lobby'])
+Route::get('/single-events/{singleEvent}/lobby', [SingleEventController::class, 'lobby'])
     ->middleware(['auth', 'verified', 'approved'])
     ->name('single_events.lobby');
 

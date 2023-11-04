@@ -90,6 +90,8 @@
 <script src={{asset("agora-rtm-sdk-1.5.1.js")}}></script>
 
 <script>
+    var groupId = {{ $group->id }};
+    var eventId = {{ $event->id }};
     let form = document.getElementById('lobby__form')
     let displayname = sessionStorage.getItem('display_name')
     if (displayname){
@@ -102,7 +104,7 @@
         if (!invitecode){
             invitecode= String(Math.floor(Math.random() * 10000))
         }
-        window.location.href =  `/room?room=${invitecode}`})
+        window.location.href =  `/groups/${groupId}/events/${eventId}/room?room=${invitecode}`})
 </script>
 
 <script>

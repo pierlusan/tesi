@@ -24,7 +24,7 @@
                             <div>
                                 @foreach ($post->attachments as $attachment)
                                     <a type="button" target="_blank" href="{{ route('attachments.show', ['group' => $group, 'post' => $post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}"
-                                       class="px-2 py-1 m-1 text-white text-sm bg-gray-500 rounded-md hover:bg-gray-400 hover:underline">{{ $attachment->file_name }}
+                                       class="px-2 py-1 m-1 text-white text-sm bg-gray-500 rounded-md hover:underline">{{ $attachment->file_name }}
                                     </a>
                                 @endforeach
                             </div>

@@ -15,18 +15,6 @@
                                 @break
                             @case(\App\Enum\EventStatus::ACTIVE)
                                 <h2 class="text-xl font-semibold"><span class="text-emerald-500">Attivo</span> dalle <span class="text-emerald-500">{{ $singleEvent->date->format('H:i') }}</span></h2>
-                                <form id="singlecall__form">
-                                    <div class="form__field__wrapper">
-                                        <input type="hidden" name="name" value="{{auth()->user()->name}}" />
-                                    </div>
-                                    <div class="form__field__wrapper">
-                                        <input type="hidden" name="room"  value="singlecall" />
-                                    </div>
-                                    <div id="greenDot"></div>
-                                    <x-primary-button type="submit">
-                                        Vai alla lobby
-                                    </x-primary-button>
-                                </form>
                                 @break
                             @case(\App\Enum\EventStatus::COMPLETED)
                                 <h2 class="text-xl font-semibold"><span class="text-indigo-500">Concluso</span> il <span class="text-indigo-500">{{ $singleEvent->date->format('d/m/Y') }}</span></h2>
@@ -43,32 +31,48 @@
                     <div class="mt-4 flex justify-between items-center">
                         <p class="text-sm text-gray-400 -mb-1">Pianificato con {{ $singleEvent->client->name }}
                         </p>
-                        @if (auth()->user()->isAdmin() && $singleEvent->status->isPlanned())
-                            <form action="{{ route('single_events.cancel', ['singleEvent' => $singleEvent]) }}" method="POST">
-                                @csrf
-                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler annullare questo evento?')">
-                                    <!-- <x-feathericon-trash-2 /> -->
-                                    Cancella
-                                </x-danger-button>
-                            </form>
-                        @elseif (auth()->user()->isAdmin() && $singleEvent->status->isCanceled())
-                            <form action="{{ route('single_events.destroy', ['singleEvent' => $singleEvent]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler eliminare definitivamente questo evento?')">
-                                    <!-- <x-feathericon-trash-2 /> -->
-                                    Elimina definitivamente
-                                </x-danger-button>
-                            </form>
-                        @elseif (auth()->user()->isAdmin() && $singleEvent->status->isActive())
-                            <form action="{{ route('single_events.end', ['singleEvent' => $singleEvent]) }}" method="POST">
-                                @csrf
-                                <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler terminare questo evento?')">
-                                    <!-- <x-feathericon-trash-2 /> -->
-                                    Termina
-                                </x-danger-button>
-                            </form>
-                        @endif
+                        <div class="flex justify-between items-center">
+                            @if (auth()->user()->isAdmin() && $singleEvent->status->isPlanned())
+                                <form action="{{ route('single_events.cancel', ['singleEvent' => $singleEvent]) }}" method="POST">
+                                    @csrf
+                                    <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler annullare questo evento?')">
+                                        <!-- <x-feathericon-trash-2 /> -->
+                                        Cancella
+                                    </x-danger-button>
+                                </form>
+                            @elseif (auth()->user()->isAdmin() && $singleEvent->status->isCanceled())
+                                <form action="{{ route('single_events.destroy', ['singleEvent' => $singleEvent]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler eliminare definitivamente questo evento?')">
+                                        <!-- <x-feathericon-trash-2 /> -->
+                                        Elimina definitivamente
+                                    </x-danger-button>
+                                </form>
+                            @elseif (auth()->user()->isAdmin() && $singleEvent->status->isActive())
+                                <form action="{{ route('single_events.end', ['singleEvent' => $singleEvent]) }}" method="POST">
+                                    @csrf
+                                    <x-danger-button type="submit" onclick="return confirm('Sei sicuro di voler terminare questo evento?')">
+                                        <!-- <x-feathericon-trash-2 /> -->
+                                        Termina
+                                    </x-danger-button>
+                                </form>
+                            @endif
+                            @if ($singleEvent->status->isActive())
+                                    <form id="singlecall__form" class="ml-2">
+                                        <div class="form__field__wrapper">
+                                            <input type="hidden" name="name" value="{{auth()->user()->name}}" />
+                                        </div>
+                                        <div class="form__field__wrapper">
+                                            <input type="hidden" name="room"  value="singlecall" />
+                                        </div>
+                                        <div id="greenDot"></div>
+                                        <x-primary-button type="submit">
+                                            Vai alla lobby
+                                        </x-primary-button>
+                                    </form>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,7 +81,7 @@
 </x-app-layout>
 
 <script>
-    var singleEventId = {{ $singleEvent->id }}
+    var singleEventId = {{ $singleEvent->id }};
     let forms = document.getElementById('singlecall__form')
     let displayName = sessionStorage.getItem('display_name1')
     if(displayName){

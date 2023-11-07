@@ -22,7 +22,11 @@
                         <x-nav-link :href="route('single_events.index')" :active="request()->routeIs('single_events.index')">
                             {{ __('Eventi Personali') }}
                             <span class="inline-block bg-gray-700 text-white rounded px-1.5 ml-1.5" style="font-size: 0.65em">
-                                {{ \App\Models\SingleEvent::all()->count() }}
+                                @if(auth()->user()->isAdmin())
+                                    {{ \App\Models\SingleEvent::all()->whereIn('status', [App\Enum\EventStatus::PLANNED, App\Enum\EventStatus::ACTIVE])->count() }}
+                                @else
+                                    {{ auth()->user()->singleEvents()->whereIn('status', [App\Enum\EventStatus::PLANNED, App\Enum\EventStatus::ACTIVE])->count() }}
+                                @endif
                             </span>
                         </x-nav-link>
                     @endif

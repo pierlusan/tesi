@@ -139,23 +139,24 @@ let leaveChannel = async ()=>{
 }
 
 let toggleCamera = async () =>{
-        let videoTrack = localstream.getTracks().find(track => track.kind === 'video')
-        if (videoTrack.enabled){
-            videoTrack.enabled = false
-        }
-        else {
-            videoTrack.enabled = true
-        }
+    let videoTrack = localstream.getTracks().find(track => track.kind === 'video')
+    if (videoTrack.enabled){
+        videoTrack.enabled = false
+    }
+    else {
+        videoTrack.enabled = true
+    }
 }
 
 let toggleMic = async () =>{
     let audioTrack = localstream.getTracks().find(track => track.kind === 'audio')
     if (audioTrack.enabled){
         audioTrack.enabled = false
+        document.getElementById('mic-icon').innerHTML = '<x-feathericon-mic-off class="h-4 mr-1 -ml-1" />';
     }
     else {
         audioTrack.enabled = true
-
+        document.getElementById('mic-icon').innerHTML = '<x-feathericon-mic class="h-4 mr-1 -ml-1" />';
     }
 }
 

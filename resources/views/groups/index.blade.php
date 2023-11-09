@@ -30,7 +30,12 @@
                                         <div class="text-gray-600 text-sm">
                                             {{ strlen($group->description) > 400 ? substr($group->description, 0, 400) . '...' : $group->description }}
                                         </div>
-                                        <div class="text-gray-400 text-xs mt-2">Creato il {{ $group->created_at->format('d/m/Y') }}</div>
+                                        <div class="text-gray-400 text-xs mt-2">
+                                            Creato il {{ $group->created_at->format('d/m/Y') }}
+                                        </div>
+                                        <div class="text-gray-600 font-semibold text-xs mt-2">
+                                            Eventi in programma: {{ $group->events->whereIn('status', [\App\Enum\EventStatus::ACTIVE, \App\Enum\EventStatus::PLANNED])->count() }}
+                                        </div>
                                     </a>
                                 </li>
                             @endforeach

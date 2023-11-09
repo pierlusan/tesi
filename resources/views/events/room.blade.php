@@ -5,10 +5,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Room</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-
-    @vite(['resources/css/room.css','resources/css/main.css'])
-
 </head>
 <body>
 
@@ -72,7 +68,6 @@
         </section>
 
         <section id="messages__container">
-
             <div id="messages">
                 <div class="message__wrapper">
                     <div class="message__body__bot">
@@ -80,21 +75,24 @@
                         <p class="message__text__bot">Riunione Iniziata!</p>
                     </div>
                 </div>
-
             </div>
 
             <form id="message__form">
                 <input type="text" name="message" placeholder="Send a message...." />
             </form>
-
         </section>
     </div>
 </main>
 
 </body>
 
-@vite(['resources/js/agora-rtm-sdk-1.5.1.js','resources/js/AgoraRTC_N-4.19.1.js', 'resources/js/room.js','resources/js/roomrtc.js'])
-
-
+@vite([
+    'resources/js/agora-rtm-sdk-1.5.1.js',
+    'resources/js/AgoraRTC_N-4.19.1.js',
+     'resources/js/room.js',
+     'resources/js/roomrtc.js',
+     'resources/css/room.css',
+     'resources/css/main.css',
+     ])
 
 </html>

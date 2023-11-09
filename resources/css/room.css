@@ -1,5 +1,4 @@
 .container {
-  margin-top: 74px;
   height: clac(100vh - 74px);
   width: 100%;
   position: relative;
@@ -12,8 +11,8 @@
 }
 
 #members__container {
-  background-color: #262625;
-  border-right: 1px solid #797a79;
+  background-color: #e5e7eb;
+  border-right: 1px solid #6b7280;
   overflow-y: auto;
   width: 90%;
   max-width: 250px;
@@ -23,7 +22,7 @@
 }
 
 #members__count {
-  background-color: #1d1d1c;
+  background-color: #111827;
   padding: 7px 15px;
   font-size: 14px;
   font-weight: 600;
@@ -37,7 +36,7 @@
   padding: 0 1rem;
   position: fixed;
   font-size: 18px;
-  background-color: #323143;
+  background-color: #334155;
   width: 218px;
 }
 
@@ -71,17 +70,18 @@
 .member_name{
   font-size: 14px;
   line-height: 0;
+  color: #030712;
 }
 
 #messages__container {
   height: calc(100vh - 85px);
-  background-color: #262625;
+  background-color: #e5e7eb;
   right: 0;
   position: absolute;
   width: 100%;
   max-width: 25rem;
   overflow-y: auto;
-  border-left: 1px solid #111;
+  border-left: 1px solid #6b7280;
 }
 
 #messages {
@@ -101,7 +101,7 @@
 }
 
 .message__body {
-  background-color: #363739;
+  background-color: #000;
   border-radius: 10px;
   padding: 10px 15px;
   width: fit-content;
@@ -110,25 +110,24 @@
 
 .message__body strong {
   font-weight: 600;
-  color: #ede0e0;
+  color: #000;
 }
 
 .message__body__bot{
   padding: 0 20px;
   max-width: 900px;
-  color: #bdbdbd;
+  color: #030712;
 }
-
 
 .message__author {
   margin-right: 10px;
-  color: #2aca3e!important;
+  color: #172554!important;
 
 }
 
 .message__author__bot {
   margin-right: 10px;
-  color: #a52aca!important;
+  color: #172554!important;
 
 }
 
@@ -141,19 +140,19 @@
   position: fixed;
   bottom: 0;
   display: block;
-  background-color: #1a1a1a;
+  background-color: #334155;
   padding: 1em;
 }
 
 #message__form input {
-  color: #fff;
+  color: #030712;
   width: 100%;
-  border: none;
+  border-left: none;
   border-radius: 5px;
   padding: 18px;
   font-size: 14px;
   box-sizing: border-box;
-  background-color: #3f434a;
+  background-color: #e5e7eb;
 }
 
 #message__form input:focus {
@@ -172,6 +171,7 @@
   top: clac(100vh - 72px);
   overflow-y: auto;
   height: 100%;
+  background-color: #fff;
 }
 
 #stream__box{
@@ -179,6 +179,7 @@
     height: 60vh;
     display: none;
 }
+
 #stream__box .video__container{
     border: 2px solid #000;
     border-radius: 0;
@@ -206,7 +207,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #b366f9;
+    border: 2px solid #1f2937;
     border-radius: 50%;
     cursor: pointer;
     overflow: hidden;
@@ -223,6 +224,7 @@
     height: 100%;
     width: 100%;
 
+
 }
 .video-player video{
     border-radius: 50%;
@@ -232,6 +234,7 @@
     .video__container{
         height: 200px;
         width: 200px;
+        background-color: #fff;
     }
 }
 
@@ -314,7 +317,7 @@
 .stream__actions a,
 .stream__actions button {
   cursor: pointer;
-  background-color: #262625;
+  background-color: #4b5563;
   color: #fff;
   border: none;
   display: flex;
@@ -336,10 +339,10 @@
 .stream__actions button.active,
 .stream__actions a:hover,
 .stream__actions button:hover {
-  background-color: #845695;
+  background-color: #111827;
 }
 #join-btn{
-    background-color: #845695;
+    background-color: #111827;
     font-size: 18px;
     padding: 25px 50px;
     border: none;

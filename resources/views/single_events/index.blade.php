@@ -1,15 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Eventi Personali') }}
-        </h2>
-    </x-slot>
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold"><span class="font-semibold">Eventi personali</span></h1>
+            <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg" style="max-height: 85.5vh; overflow-y: auto;">
+                <div class="p-6 backdrop-blur-3xl">
+                    <div class="pb-6 backdrop-blur-3xl flex justify-between items-center">
+                        <h1 class="text-2xl text-stone-100 font-semibold">Eventi personali</h1>
                         @if (Auth::user()->isAdmin())
                             <form action=" {{ route('single_events.create') }} " method="GET">
                                 <x-primary-button>
@@ -22,7 +17,7 @@
                         <ul class="list-none space-y-4">
                             @foreach ($singleEvents as $singleEvent)
                                 <li>
-                                    <a href="{{ route('single_events.show', ['singleEvent' => $singleEvent]) }}" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
+                                    <a href="{{ route('single_events.show', ['singleEvent' => $singleEvent]) }}" class="block bg-stone-600 hover:bg-stone-700 p-4 rounded-lg shadow-md transition ease-in-out duration-150">
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-2 flex items-center justify-center mr-4">
                                                 <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',
@@ -33,14 +28,14 @@
                                                     {{ $singleEvent->status }}
                                                 </span>
                                             </div>
-                                            <div class="col-span-10 pl-3 border-l-2 border-gray-300">
+                                            <div class="col-span-10 pl-3 border-l-2 border-stone-500">
                                                 <div class="mb-1">
-                                                    <span class="text-gray-900 font-semibold">{{ $singleEvent->title }}</span>
+                                                    <span class="text-stone-100 font-semibold">{{ $singleEvent->title }}</span>
                                                 </div>
-                                                <div class="text-gray-600 text-sm">
+                                                <div class="text-stone-300 text-sm">
                                                     {{ $singleEvent->description }}
                                                 </div>
-                                                <div class="text-gray-400 text-sm mt-2">
+                                                <div class="text-stone-400 text-sm mt-2">
                                                     Insieme a {{ $singleEvent->client->name }}<br>
                                                     Data: {{ $singleEvent->date->format('d/m/Y H:i') }}
                                                 </div>

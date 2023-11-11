@@ -1,40 +1,26 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gruppi - ') }} <span class="font-normal">{{ $group->name }}</span>
-        </h2>
-    </x-slot>
     <div class="py-6">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8" style="max-height: 85.5vh; overflow-y: auto;">
+            <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <x-group-menu  :group="$group" />
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="text-2xl font-semibold mb-4">{{ $group->name }} - Crea Evento</h1>
-
+                <div class="p-6 backdrop-blur-3xl">
+                    <h1 class="text-2xl text-stone-100 font-semibold mb-4">{{ $group->name }} - Crea Evento</h1>
                     <form method="POST" action="{{ route('events.store', ['group' => $group]) }}" class="space-y-4">
                         @csrf
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-600">Titolo<span class="font-bold text-base text-red-600">*</span></label>
-                            <x-text-input type="text" name="title" class="block w-full" id="title" required></x-text-input>
+                            <label for="title" class="block text-stone-100">Titolo<span class="font-bold text-base text-red-600">*</span></label>
+                            <x-text-input type="text" name="title" class="block bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md w-full" id="title" required></x-text-input>
                         </div>
 
                         <div class="mb-4">
-                            <label for="description" class="block text-gray-600">Descrizione<span class="font-bold text-base text-red-600">*</span></label></label>
-                            <textarea name="description" id="description" rows="2" class="block mt-1 w-full border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required></textarea>
+                            <label for="description" class="block text-stone-100">Descrizione<span class="font-bold text-base text-red-600">*</span></label></label>
+                            <textarea name="description" id="description" rows="2" class="block mt-1 w-full border bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700 rounded-md shadow-md" required></textarea>
                         </div>
 
                         <div class="mb-4">
-                            <label for="date" class="block text-gray-600">Data e ora<span class="font-bold text-base text-red-600">*</span></label>
-                            <x-text-input type="datetime-local" name="date" class="block w-full" id="date" min="{{ now()->toDateString() . 'T' . now()->format('H:i') }}" required></x-text-input>
+                            <label for="date" class="block text-stone-100">Data e ora<span class="font-bold text-base text-red-600">*</span></label>
+                            <x-text-input type="datetime-local" name="date" class="block bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md w-full" id="date" min="{{ now()->toDateString() . 'T' . now()->format('H:i') }}" required></x-text-input>
                         </div>
-
-                        <!--
-                        <div class="mb-4">
-                            <label for="type" class="block text-gray-600">Tipologia</label>
-                            <x-text-input type="text" name="type" class="block w-full" id="type"></x-text-input>
-                        </div>
-                        -->
-
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button type="submit">Pianifica Evento</x-primary-button>
                         </div>

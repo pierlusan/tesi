@@ -17,6 +17,11 @@ export default {
             fontSize: {
                 '2xs': '0.675rem',
             },
+            backdropBlur: {
+                '180': '180px',
+                '300': '300px',
+                '800': '800px',
+            }
         },
     },
 

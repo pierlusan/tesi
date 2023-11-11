@@ -1,16 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gruppi - ') }} <span class="font-normal">{{ $group->name }}</span>
-        </h2>
-    </x-slot>
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <x-group-menu :group="$group" />
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="pb-6 bg-white border-b border-gray-100 flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold">{{ $group->name }} <span class="font-normal"> - Eventi</span></h1>
+                <div class="p-6 backdrop-blur-3xl" style="max-height: 77vh; overflow-y: auto;">
+                    <div class="pb-6 backdrop-blur-3xl flex justify-between items-center" >
+                        <h1 class="text-2xl text-stone-100 font-semibold">{{ $group->name }} <span class="font-normal"> - Eventi</span></h1>
                         @if (Auth::user()->isAdmin())
                             <form action="{{ route('events.create', $group) }}" method="GET">
                                 <x-primary-button>
@@ -23,7 +18,7 @@
                         <ul class="list-none space-y-4">
                             @foreach ($events as $event)
                                 <li>
-                                    <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block p-4 border rounded-lg border-gray-200 shadow-md hover:bg-gray-100">
+                                    <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block bg-stone-600 hover:bg-stone-700 p-4 rounded-lg shadow-md transition ease-in-out duration-150">
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-2 flex items-center justify-center mr-4">
                                                 <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',
@@ -34,14 +29,14 @@
                                                     {{ $event->status }}
                                                 </span>
                                             </div>
-                                            <div class="col-span-10 pl-3 border-l-2 border-gray-300">
+                                            <div class="col-span-10 pl-3 border-l-2 border-stone-500">
                                                 <div class="mb-1">
-                                                    <span class="text-gray-900 font-semibold">{{ $event->title }}</span>
+                                                    <span class="text-stone-100 font-semibold">{{ $event->title }}</span>
                                                 </div>
-                                                <div class="text-gray-600 text-sm">
+                                                <div class="text-stone-300 text-sm">
                                                     {{ $event->description }}
                                                 </div>
-                                                <div class="text-gray-400 text-sm mt-2">
+                                                <div class="text-stone-400 text-sm mt-2">
                                                     Data: {{ $event->date->format('d/m/Y H:i') }}
                                                 </div>
                                             </div>

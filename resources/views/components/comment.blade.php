@@ -73,7 +73,7 @@
     <form method="post" action="{{ route('replies.store', ['group' => $comment->post->group, 'post' => $comment->post, 'comment' => $comment]) }}">
         @csrf
         <div class="-mt-2 mb-2">
-            <textarea name="content" id="content" rows="2" class="shadow-md text-sm w-full px-4 py-2 mt-3 bg-stone-400 border-stone-600 focus:border-stone-700 placeholder-stone-700 focus:ring-stone-700 rounded-md" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
+            <textarea name="content" id="content" rows="2" class="shadow-md text-sm w-full px-4 py-2 mt-3 bg-stone-300 border-stone-600 focus:border-stone-700 placeholder-stone-700 focus:ring-stone-700 rounded-md" placeholder="Rispondi al commento di {{ $comment->author->name }}" required></textarea>
         </div>
         <div class="flex justify-end">
             <button type="submit" style="font-size: 0.65rem" class="inline-flex items-center px-3 py-1.5 bg-stone-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-stone-700 focus:bg-stone-700 active:bg-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-700 focus:ring-offset-2 transition ease-in-out duration-150">

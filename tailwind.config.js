@@ -18,6 +18,8 @@ export default {
                 '2xs': '0.675rem',
             },
             backdropBlur: {
+                '96': '96px',
+                '128': '128px',
                 '180': '180px',
                 '300': '300px',
                 '800': '800px',

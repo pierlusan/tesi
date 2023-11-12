@@ -1,12 +1,13 @@
 .fc-event {
-    background-color: #1f2937;
+    background-color: #525252;
     color: #fff;
     padding: 8px;
     margin: 6px;
 }
 
 .fc-event:hover {
-    background-color: #2a3340;
+    background-color: #44403c;
+    transition: background-color 0.25s ease-in-out;
 }
 
 .fc-daygrid-day-frame {
@@ -22,3 +23,27 @@
     background-color: #f0f0f0;
 }
 
+.fc-toolbar-title {
+    color: #0c0a09;
+    font-weight: bold;
+}
+
+.fc-button {
+    background-color: #0c0a09;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a8a29e;
+    border-radius: 10px;
+}

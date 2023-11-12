@@ -3,7 +3,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <div id='calendar' class="p-10"></div>
-
             </div>
         </div>
     </div>
@@ -29,6 +28,7 @@
                     slotMinTime: '8:00:00',
                     slotMaxTime: '19:00:00',
                     expandRows:true,
+                    allDaySlot: false,
                     titleFormat: { month: 'long', year:'numeric'},
                     events: @json($events),
                     eventTimeFormat: {
@@ -96,10 +96,7 @@
                     },
                 });
 
-
                 calendar.render();
-                calendarEl.querySelector('.fc-toolbar-title').style.color = 'white';
-
             });
         </script>
 

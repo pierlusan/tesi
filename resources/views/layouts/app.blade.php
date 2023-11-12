@@ -14,6 +14,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <style>
             body {
+                background-color: #5A4D43;
                 background-image: url('{{ asset('videotherapy-bg-hq.jpg') }}');
                 background-size: cover;
                 background-repeat: no-repeat;

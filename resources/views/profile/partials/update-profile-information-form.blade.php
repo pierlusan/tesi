@@ -1,10 +1,13 @@
 <section>
+    <div>
+
+    </div>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-stone-100">
             {{ __('Informazioni Profilo') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-1 text-sm text-stone-300">
             {{ __("Aggiorna le informazioni del tuo account") }}
         </p>
     </header>
@@ -18,14 +21,14 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Nome')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-label for="name" class="text-stone-200" :value="__('Nome')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-input-label for="email" class="text-stone-200" :value="__('Email')" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())

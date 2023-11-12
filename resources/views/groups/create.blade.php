@@ -9,11 +9,11 @@
                         @csrf
                         <div class="mb-4">
                             <x-input-label for="name" class="text-stone-100" :value="__('Nome del gruppo')" />
-                            <x-text-input id="name" class="block bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-text-input id="name" class="block bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                         </div>
 
                         <label for="users" class="block mb-1 text-sm font-medium text-stone-100">Aggiungi Utenti</label>
-                        <select multiple name="users[]" id="users" multiple multiselect-search="true" multiselect-select-all="true" multiselect-max-items="4" onchange="console.log(this.selectedOptions)"  class="mt-1 block w-full rounded-md shadow-md bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700">
+                        <select multiple name="users[]" id="users" multiple multiselect-search="true" multiselect-select-all="true" multiselect-max-items="4" onchange="console.log(this.selectedOptions)"  class="mt-1 block w-full rounded-md shadow-md bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
@@ -21,7 +21,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="description" class="text-stone-100 mt-1" :value="__('Descrizione')" />
-                            <textarea id="description" class="block h-32 mt-1 mb-4 w-full bg-stone-400 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md" name="description" required>{{ old('description') }}</textarea>
+                            <textarea id="description" class="block h-32 mt-1 mb-4 w-full bg-stone-300 border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md" name="description" required>{{ old('description') }}</textarea>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

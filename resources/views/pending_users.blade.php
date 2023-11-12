@@ -2,7 +2,7 @@
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg" style="max-height: 85.5vh; overflow-y: auto;">
-                <div class="p-6 backdrop-blur-3xl">
+                <div class="p-6 backdrop-blur-180">
                     <h2 class="text-2xl text-stone-100 font-semibold mb-4">Utenti in attesa di approvazione</h2>
                     <ul>
                         @foreach ($users as $user)

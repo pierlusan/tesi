@@ -1,9 +1,9 @@
 <x-app-layout>
     <div class="py-6" style="max-height: 89vh; overflow-y: auto;">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg" >
+            <div class="backdrop-blur-180 overflow-hidden shadow-md sm:rounded-lg" >
                 <x-group-menu :group="$post->group" />
-                <div class="p-6 bg-stone-600">
+                <div class="p-6 backdrop-blur-800">
                     <div class="mb-1 -mt-1 flex justify-between items-center">
                         <h2 class="text-2xl text-stone-100 font-semibold">{{ $post->title }}</h2>
                         <p class="text-stone-400 text-xs">{{ $post->created_at->format('d/m/Y H:i') }}</p>
@@ -58,12 +58,12 @@
                     </div>
                     <div class="p-4 bg-stone-600 rounded-md shadow-md">
                         <div class="w-full mb-4">
-                            <textarea name="content" id="content" rows="3" class="block mt-1 mb-4 bg-stone-400 border-stone-600 focus:border-stone-700 placeholder-stone-700 focus:ring-stone-700 shadow-md rounded-md w-full" placeholder="Scrivi un commento" required></textarea>
+                            <textarea name="content" id="content" rows="3" class="block mt-1 mb-4 bg-stone-300 border-stone-600 focus:border-stone-700 placeholder-stone-700 focus:ring-stone-700 shadow-md rounded-md w-full" placeholder="Scrivi un commento" required></textarea>
                         </div>
                         <div class="w-full mb-4">
                             <div class="mb-4">
                                 <label for="attachments" class="block text-stone-100 mb-2">Allegati <span class="text-xs text-stone-100">(max: 128MB)</span></label>
-                                <input type="file" name="attachments[]" id="attachments" class="w-full bg-stone-400 border border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md file:mr-4 file:uppercase file:px-8 file:py-3 file:border-0 file:rounded-l-md file:font-semibold file:text-white file:text-xs file:tracking-widest file:bg-stone-800 hover:file:bg-stone-700 hover:file:cursor-pointer" multiple>
+                                <input type="file" name="attachments[]" id="attachments" class="w-full bg-stone-300 border border-stone-600 focus:border-stone-700 focus:ring-stone-700 shadow-md rounded-md file:mr-4 file:uppercase file:px-8 file:py-3 file:border-0 file:rounded-l-md file:font-semibold file:text-white file:text-xs file:tracking-widest file:bg-stone-800 hover:file:bg-stone-700 hover:file:cursor-pointer" multiple>
                             </div>
                         </div>
                     </div>

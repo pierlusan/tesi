@@ -25,7 +25,7 @@
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
     <div>
         <a href="/">
-            <img src="" alt="Logo del mio sito" />
+            <img src="{{asset('logo.png')}}" alt="Logo del mio sito" />
         </a>
     </div>
 

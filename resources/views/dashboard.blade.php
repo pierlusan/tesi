@@ -3,22 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <div id='calendar' class="p-10"></div>
-                @if (auth()->user()->isAdmin())
-                    <div class="flex justify-end">
-                        <div class="border border-gray-300 bg-gray-100 shadow-md rounded-md p-6 mx-10 mb-8 -mt-4">
-                            <form id="group-selection-form">
-                                @csrf
-                                <select name="group" id="group" class="rounded-md placeholder-gray-400 mr-3">
-                                    <option value="" class="text-gray-200" disabled selected hidden>Seleziona gruppo</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-primary-button type="button" id="go-to-event-creation">Crea evento</x-primary-button>
-                            </form>
-                        </div>
-                    </div>
-                @endif
+
             </div>
         </div>
     </div>
@@ -43,11 +28,18 @@
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     slotMinTime: '8:00:00',
                     slotMaxTime: '19:00:00',
+                    expandRows:true,
+                    titleFormat: { month: 'long', year:'numeric'},
                     events: @json($events),
                     eventTimeFormat: {
                         hour: '2-digit',
                         minute: '2-digit',
                         hour12: false
+                    },
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
                     },
                     eventContent: function (arg) {
                         var group = arg.event.extendedProps.group;
@@ -103,7 +95,11 @@
                         return { domNodes: [content] };
                     },
                 });
+
+
                 calendar.render();
+                calendarEl.querySelector('.fc-toolbar-title').style.color = 'white';
+
             });
         </script>
 

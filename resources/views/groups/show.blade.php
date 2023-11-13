@@ -4,7 +4,7 @@
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <x-group-menu :group="$group" />
                 <div class="p-6 backdrop-blur-3xl" style="max-height: 77vh; overflow-y: auto;">
-                    <div class="bg-stone-600 p-4 rounded-md shadow-md">
+                    <div class="bg-stone-500 opacity-80 p-4 rounded-md shadow-md">
                         <div class="flex justify-between items-center">
                             <h2 class="text-2xl text-stone-100 font-semibold mb-2" id="groupName">{{ $group->name }}</h2>
                             @if (auth()->user()->isAdmin())
@@ -33,7 +33,7 @@
                             <textarea id="newGroupDesc" class="h-32 mt-1 mb-4 w-full text-gray-600 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="description" required>{{ $group->description }}</textarea>
                         </div>
                     </div>
-                    <div class="bg-stone-600 rounded-md shadow-md px-4 pb-4 pt-1 mt-4">
+                    <div class="bg-stone-500 opacity-80 rounded-md shadow-md px-4 pb-4 pt-1 mt-4">
                         <form method="POST" action="{{ route('groups.add', ['group' => $group]) }}">
                             @csrf
                             <div class="flex justify-between items-center mb-3">

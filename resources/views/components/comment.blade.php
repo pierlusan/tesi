@@ -1,6 +1,6 @@
 @props(['comment'])
 
-<div class="px-auto p-7 rounded-lg mt-4 shadow-md @if (auth()->check() && auth()->user()->id === $comment->user_id) bg-stone-700 hover:bg-stone-600 transition ease-in-out duration-150 @else bg-stone-600 @endif">
+<div class="px-auto p-7 rounded-lg mt-4 shadow-md @if (auth()->check() && auth()->user()->id === $comment->user_id) bg-stone-700 hover:bg-stone-600 opacity-80 transition ease-in-out duration-150 @else bg-stone-600 opacity-80 @endif">
     <div class="flex justify-between items-center -mt-1 mb-2">
         <div class="flex items-center @if (auth()->check() && auth()->user()->id === $comment->user_id) text-base font-semibold text-stone-100 @else text-base text-stone-200 @endif">
             <x-feathericon-message-square class="h-5 mr-1 -ml-0.5" />
@@ -27,7 +27,7 @@
         <p class="text-stone-300">{{ $comment->content }}</p>
     </div>
     @if ($comment->attachments->count() > 0)
-        <div class="items-center px-3 py-2 mb-3 border-l-4 border-solid border-stone-500">
+        <div class="items-center px-3 py-2 mb-3 border-l-4 border-solid border-stone-400">
             <div class="flex items-center">
                 <x-feathericon-paperclip class="h-3 -mr-0.5 text-stone-400" />
                 <h2 class="text-xs text-stone-400">Allegati:</h2><br>
@@ -35,16 +35,16 @@
             <div>
                 @foreach ($comment->attachments as $attachment)
                     <a type="button" target="_blank" href="{{ route('attachments.show', ['group' => $comment->post->group, 'post' => $comment->post, 'attachment' => $attachment, 'attachment_name' => $attachment->file_name]) }}"
-                       class="px-2 py-1 m-1 text-white text-2xs bg-stone-500 rounded-md hover:underline">{{ $attachment->file_name }}
+                       class="px-2 py-1 m-1 text-white text-2xs bg-stone-400 rounded-md hover:underline">{{ $attachment->file_name }}
                     </a>
                 @endforeach
             </div>
         </div>
     @endif
     @if ($comment->replies->count() > 0)
-        <div class="border-l-4 border-l-stone-500 ml-0 mb-4 bg-transparent space-y-2">
+        <div class="border-l-4 border-l-stone-400 ml-0 mb-4 bg-transparent space-y-2">
             @foreach($comment->replies as $reply)
-                <div class="border-b-2 border-b-stone-500 px-4 py-2">
+                <div class="border-b-2 border-b-stone-400 px-4 py-2">
                     <div class="flex items-center mb-2 @if(auth()->check() && auth()->user()->id === $reply->user_id) text-sm font-semibold text-stone-100 @else text-sm text-stone-200 @endif">
                         <x-feathericon-corner-left-up class="h-4 -ml-1.5" />
                         <p class="">{{ $reply->author->name }}</p>

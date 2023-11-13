@@ -15,7 +15,7 @@
                     @if ($posts->count() > 0)
                         <ul class="space-y-4">
                             @foreach ($posts as $post)
-                                <li class="rounded-lg p-4 shadow-md bg-stone-600 hover:bg-stone-700 transition ease-in-out duration-150">
+                                <li class="rounded-lg p-4 shadow-md bg-stone-500 hover:bg-stone-600 opacity-80 transition ease-in-out duration-150">
                                     <a href="{{ route('posts.show', ['group' => $group, 'post' => $post]) }}" class="bg-stone-600 hover:bg-stone-700">
                                         <div class="mb-1 -mt-1 flex justify-between items-center">
                                             <h2 class="text-stone-100 font-semibold">{{ $post->title }}</h2>

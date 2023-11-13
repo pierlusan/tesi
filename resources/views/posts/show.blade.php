@@ -56,7 +56,7 @@
                             Commenta
                         </x-primary-button>
                     </div>
-                    <div class="p-4 bg-stone-600 rounded-md shadow-md">
+                    <div class="p-4 bg-stone-500 opacity-80 rounded-md shadow-md">
                         <div class="w-full mb-4">
                             <textarea name="content" id="content" rows="3" class="block mt-1 mb-4 bg-stone-300 border-stone-600 focus:border-stone-700 placeholder-stone-700 focus:ring-stone-700 shadow-md rounded-md w-full" placeholder="Scrivi un commento" required></textarea>
                         </div>

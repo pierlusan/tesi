@@ -17,7 +17,7 @@
                         <ul class="list-none space-y-4">
                             @foreach ($groups as $group)
                                 <li>
-                                    <a href="{{ route('groups.show', $group) }}" class="block p-4 rounded-lg shadow-md bg-stone-600 hover:bg-stone-700 transition ease-in-out duration-150">
+                                    <a href="{{ route('groups.show', $group) }}" class="block p-4 rounded-lg shadow-md bg-stone-500 hover:bg-stone-600 opacity-80 transition ease-in-out duration-150">
                                         <div class="mb-1">
                                             <span class="text-stone-100 font-semibold">{{ $group->name }}</span>
                                         </div>

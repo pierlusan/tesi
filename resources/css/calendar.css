@@ -1,12 +1,12 @@
 .fc-event {
-    background-color: #525252;
+    background-color: #78716c;
     color: #fff;
     padding: 8px;
     margin: 6px;
 }
 
 .fc-event:hover {
-    background-color: #44403c;
+    background-color: #57534e;
     transition: background-color 0.25s ease-in-out;
 }
 

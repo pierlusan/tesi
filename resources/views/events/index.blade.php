@@ -18,7 +18,7 @@
                         <ul class="list-none space-y-4">
                             @foreach ($events as $event)
                                 <li>
-                                    <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block bg-stone-600 hover:bg-stone-700 p-4 rounded-lg shadow-md transition ease-in-out duration-150">
+                                    <a href="{{ route('events.show', ['group' => $group, 'event' => $event]) }}" class="block bg-stone-500 hover:bg-stone-600 opacity-80 p-4 rounded-lg shadow-md transition ease-in-out duration-150">
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-2 flex items-center justify-center mr-4">
                                                 <span @class(['w-full py-3 mx-1 text-white text-center rounded-md text-2xs font-semibold uppercase tracking-widest',
@@ -29,7 +29,7 @@
                                                     {{ $event->status }}
                                                 </span>
                                             </div>
-                                            <div class="col-span-10 pl-3 border-l-2 border-stone-500">
+                                            <div class="col-span-10 pl-3 border-l-2 border-stone-400">
                                                 <div class="mb-1">
                                                     <span class="text-stone-100 font-semibold">{{ $event->title }}</span>
                                                 </div>

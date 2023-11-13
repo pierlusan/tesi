@@ -1,4 +1,4 @@
-<div class="bg-stone-600 pl-7 pr-8 pb-1 pt-3 border-b border-stone-300 flex justify-left space-x-4">
+<div class="bg-stone-500 pl-7 pr-8 pb-1 pt-3 border-b border-stone-700 flex justify-left space-x-4">
     <x-nav-link-group :href="route('groups.show', ['group' => $group])"
                       :active="request()->routeIs('groups.show')">
         {{ __('Home') }}

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <div id='calendar' class="p-10"></div>
             </div>

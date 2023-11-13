@@ -24,12 +24,27 @@
 }
 
 .fc-toolbar-title {
-    color: #0c0a09;
-    font-weight: bold;
+    background-color: #44403c;
+    font-size: 1.4rem !important;
+    color: white;
+    padding: 4px 12px 4px 12px;
+    border-radius: 5px;
 }
 
 .fc-button {
-    background-color: #0c0a09;
+    background-color: #44403c !important;
+    border: none !important;
+}
+
+.fc-button:focus {
+    background-color: #57534e !important;
+    box-shadow: none !important;
+}
+
+.fc-button:hover {
+    background-color: #57534e !important;
+    box-shadow: none !important;
+    transition: all 0.15s ease-in-out !important;
 }
 
 ::-webkit-scrollbar {

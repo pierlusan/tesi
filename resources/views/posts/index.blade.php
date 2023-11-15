@@ -36,7 +36,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-gray-500 border-transparent -mt-6">Ancora nessun post.</p>
+                        <p class="text-stone-300 border-transparent -mt-6">Ancora nessun post.</p>
                     @endif
                 </div>
             </div>

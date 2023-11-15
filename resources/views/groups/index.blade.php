@@ -35,7 +35,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-gray-500">Non sei ancora membro di nessun gruppo.</p>
+                        <p class="text-stone-300">Non sei ancora membro di nessun gruppo.</p>
                     @endif
                 </div>
             </div>

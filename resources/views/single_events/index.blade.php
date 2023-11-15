@@ -46,7 +46,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-gray-500">Nessun evento disponibile al momento.</p>
+                        <p class="text-stone-300">Nessun evento disponibile al momento.</p>
                     @endif
                 </div>
             </div>

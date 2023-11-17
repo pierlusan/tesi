@@ -1,3 +1,6 @@
+@vite(['resources/css/webrtc.css', 'resources/js/webrtc.js'])
+    <script src="{{ asset('agora-rtm-sdk-1.5.1.js') }}"></script>
+
 <x-app-layout>
     <div class="py-16">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -38,4 +41,3 @@
     </div>
 </x-app-layout>
 
-@vite(['resources/css/webrtc.css', 'resources/js/agora-rtm-sdk-1.5.1.js', 'resources/js/webrtc.js'])

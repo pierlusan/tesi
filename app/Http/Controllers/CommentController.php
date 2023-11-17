@@ -24,14 +24,11 @@ class CommentController extends Controller
 
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $attachment) {
-                $commentId = $comment->id;
                 $fileName = $attachment->getClientOriginalName();
                 $filePath = $attachment->store('attachments', 'public');
                 $comment->attachments()->create([
                     'file_name' => $fileName,
                     'file_path' => $filePath,
-                    'attachable_id' => $commentId,
-                    'attachable_type' => Comment::class,
                 ]);
             }
         }

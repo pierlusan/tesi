@@ -123,8 +123,6 @@ let createAnswer = async (MemberId,offer)=> {
     await peerConnection.setLocalDescription(answer)
     await client.sendMessageToPeer({text: JSON.stringify({'type': 'answer', 'answer': answer})}, MemberId)
 
-
-
 }
 
 let addAnswer = async (answer) => {
@@ -142,9 +140,11 @@ let toggleCamera = async () =>{
     let videoTrack = localstream.getTracks().find(track => track.kind === 'video')
     if (videoTrack.enabled){
         videoTrack.enabled = false
+        document.getElementById('camera-btn').style.backgroundColor = 'rgb(68, 64, 60)';
     }
     else {
         videoTrack.enabled = true
+        document.getElementById('camera-btn').style.backgroundColor = 'rgb(41, 37, 36)';
     }
 }
 
@@ -152,11 +152,11 @@ let toggleMic = async () =>{
     let audioTrack = localstream.getTracks().find(track => track.kind === 'audio')
     if (audioTrack.enabled){
         audioTrack.enabled = false
-        document.getElementById('mic-icon').innerHTML = '<x-feathericon-mic-off class="h-4 mr-1 -ml-1" />';
+        document.getElementById('mic-btn').style.backgroundColor = 'rgb(68, 64, 60)';
     }
     else {
         audioTrack.enabled = true
-        document.getElementById('mic-icon').innerHTML = '<x-feathericon-mic class="h-4 mr-1 -ml-1" />';
+        document.getElementById('mic-btn').style.backgroundColor = 'rgb(41, 37, 36)';
     }
 }
 

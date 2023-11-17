@@ -349,7 +349,9 @@ document.getElementById('camera-btn').addEventListener('click',toggleCamera)
 document.getElementById('mic-btn').addEventListener('click',toggleMic)
 document.getElementById('screen-btn').addEventListener('click',toggleScreen)
 document.getElementById('join-btn').addEventListener('click',joinStream)
-document.getElementById('leave-btn').addEventListener('click',leaveStream)
+document.getElementById('leave-btn').addEventListener('click',function() {
+    window.location.href =  `/`
+})
 
 
 

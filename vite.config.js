@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/webrtc.css',
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/css/calendar.css',
                 'resources/js/multiselect.js',
                 'resources/js/edit-group.js',
                 'resources/js/room.js',

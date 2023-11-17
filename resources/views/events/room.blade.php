@@ -1,10 +1,23 @@
 <!DOCTYPE html>
+@vite([
+    'resources/js/agora-rtm-sdk-1.5.1.js',
+    'resources/js/AgoraRTC_N-4.19.1.js',
+     'resources/js/room.js',
+     'resources/js/roomrtc.js',
+     'resources/css/room.css',
+     'resources/css/main.css',
+     ])
+
 <html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Room</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src="{{ asset('agora-rtm-sdk-1.5.1.js') }}"></script>
+        <script src="{{ asset('AgoraRTC_N-4.19.1.js') }}"></script>
+
+
 </head>
 <body>
 
@@ -86,13 +99,5 @@
 
 </body>
 
-@vite([
-    'resources/js/agora-rtm-sdk-1.5.1.js',
-    'resources/js/AgoraRTC_N-4.19.1.js',
-     'resources/js/room.js',
-     'resources/js/roomrtc.js',
-     'resources/css/room.css',
-     'resources/css/main.css',
-     ])
 
 </html>

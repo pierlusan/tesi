@@ -42,6 +42,6 @@ class AppServiceProvider extends ServiceProvider
         View::share([
             'pendingUsersCount' => $pendingUsersCount,
             //'singleEventsCount' => $singleEventsCount,
-        ]);
-    }*/
+        ]);*/
+    }
 }

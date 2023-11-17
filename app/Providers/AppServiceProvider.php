@@ -38,10 +38,10 @@ class AppServiceProvider extends ServiceProvider
                 ->get()->count();
         }
          **/
-        $pendingUsersCount = User::where('approved', 0)->count();
+       /** $pendingUsersCount = User::where('approved', 0)->count();
         View::share([
             'pendingUsersCount' => $pendingUsersCount,
             //'singleEventsCount' => $singleEventsCount,
-        ]);
+        ]);*/
     }
 }

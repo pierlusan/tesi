@@ -20,38 +20,38 @@
     </style>
 </head>
 <body class="antialiased">
-<div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center  bg-dots-lighter bg-gray-900 selection:bg-red-500 selection:text-white">
+<div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center  bg-dots-lighter bg-gray-900">
     <div class="max-w-7xl mx-auto p-6 lg:p-8">
-        <a href="/"   >
-            <img src={{asset('logo.png')}} alt="Logo" style="position: absolute;left: 42% ;top: 0% " />
-        </a>
-
-        <div style="position: absolute; top: 180px; right: 300px; left: 600px">
-            <p class="" style="font-family: 'Didot', serif; font-size: 18px; color: #333; letter-spacing: 1px; line-height: 1.5; font-weight: normal;">
-                Benvenuti nel vostro rifugio personale per il benessere mentale. Qui, potrete connettervi con il vostro psicologo per esplorare insieme il vostro percorso di crescita e guarigione, creando un ambiente sicuro per prendervi cura della vostra mente.
+        <div class="mx-auto" style="text-align: center; background-color: rgba(255, 255, 255, 0.65); padding: 20px; border-radius: 10px; width: 80%; max-width: 600px;">
+            <a href="/"   >
+                <img src={{asset('logo.png')}} alt="Logo" class="h-8 mx-auto" />
+            </a>
+            <p class="mt-4" style="font-size: 1rem; color: #111;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
         </div>
-        <div class="mt-16 " style="margin-top: 20rem;">
+
+        <div class="mt-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 ">
-                <a href="{{ route('register') }}" class="scale-100 p-6 via-transparent ring-1 ring-inset ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" style="backdrop-filter: blur(100px)  "  >
+                <a href="{{ route('register') }}" class="scale-100 p-6 via-transparent ring-1 ring-inset ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-stone-500" style="backdrop-filter: blur(100px)  "  >
                     <div>
                         <h2 class="mt-2 text-xl font-semibold" style="color: #f5f5f4">Registrati</h2>
                         <p class="mt-4 dark:text-blue-400 text-sm leading-relaxed" style="color: #d6d3d1">
                             Una volta creato il tuo account, dovrai attendere che la tua richiesta di registrazione venga confermata da un amministratore.
                         </p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-blue-500 w-6 h-6 mx-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                     </svg>
                 </a>
-                <a href="{{ route('login') }}" class="scale-100 p-6  bg-gray-800/50 bg-gradient-to-bl from-gray-700/50 via-transparent ring-1 ring-inset ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" style="backdrop-filter: blur(100px)">
+                <a href="{{ route('login') }}" class="scale-100 p-6  bg-gray-800/50 bg-gradient-to-bl from-gray-700/50 via-transparent ring-1 ring-inset ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-stone-500" style="backdrop-filter: blur(100px)">
                     <div>
                         <h2 class="mt-2 text-xl font-semibold" style="color: #f5f5f4">Accedi</h2>
                         <p class="mt-4 text-sm leading-relaxed" style="color: #d6d3d1">
                             Se hai già un account, effettua il login da qui.
                         </p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-blue-500 w-6 h-6 mx-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                     </svg>
                 </a>

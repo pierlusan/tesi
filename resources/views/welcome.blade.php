@@ -27,8 +27,7 @@
                 <img src={{asset('logo.png')}} alt="Logo" class="h-8 mx-auto" />
             </a>
             <p class="mt-4" style="font-size: 1rem; color: #111;">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+Rompi le barriere del tradizionale supporto psicologico e immergiti in una connessione visiva intensa, pensata per guidarti attraverso la trasformazione personale.            </p>
         </div>
 
         <div class="mt-16">

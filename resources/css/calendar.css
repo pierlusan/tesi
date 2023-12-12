@@ -66,3 +66,6 @@
     background: #a8a29e;
     border-radius: 10px;
 }
+::-webkit-scrollbar:horizontal {
+    display: none;
+}

@@ -27,7 +27,7 @@
                 <img src={{asset('logo.png')}} alt="Logo" class="h-8 mx-auto" />
             </a>
             <p class="mt-4" style="font-size: 1rem; color: #111;">
-Rompi le barriere del tradizionale supporto psicologico e immergiti in una connessione visiva intensa, pensata per guidarti attraverso la trasformazione personale.            </p>
+Rompi le barriere del tradizionale supporto psicologico e immergiti in un'esperienza pensata per guidarti attraverso la trasformazione personale.            </p>
         </div>
 
         <div class="mt-16">

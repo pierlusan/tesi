@@ -8,8 +8,11 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\SingleEventController;
+use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -174,5 +177,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
 });
+
+
+//Survey
+Route::get('/survey', [SurveyController::class,'index'])->name('survey.index');
+Route::get('/survey/create', [SurveyController::class,'create'])->name('survey.create');
+Route::post('/survey/create', [SurveyController::class,'store'])->name('survey.store');
+Route::get('/survey/{survey}', [SurveyController::class,'show'])->name('survey.show');
+Route::get('/survey/{survey}/questions/create',[QuestionController::class,'create'])->name('question.create');
+Route::post('/survey/{survey}/questions/create',[QuestionController::class,'store'])->name('question.store');
+Route::get('/survey/take/{survey}-{slug}',[SurveyController::class,'take'])->name('survey.take');
+Route::post('/survey/take/{survey}-{slug}',[SurveyController::class,'takeStore'])->name('survey.takeStore');
+Route::delete('/survey/{survey}/questions/{question}',[QuestionController::class,'delete'])->name('question.delete');
+Route::get('/survey/results/{survey}',[ResultsController::class,'take'])->name('results.take');
+
+
+
+
 
 require __DIR__.'/auth.php';

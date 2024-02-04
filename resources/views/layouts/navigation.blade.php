@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
                             {{ __('Gruppi') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('survey.index')" :active="request()->routeIs('survey.index')">
+                            Questionari
+                        </x-nav-link>
                         <x-nav-link :href="route('single_events.index')" :active="request()->routeIs('single_events.index')">
                             {{ __('Eventi Personali') }}
                             <span class="inline-block bg-stone-700 text-white rounded px-1.5 ml-1.5" style="font-size: 0.65em">

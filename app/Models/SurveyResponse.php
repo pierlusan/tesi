@@ -9,8 +9,23 @@ class SurveyResponse extends Model
 {
     use HasFactory;
     public $guarded = [];
-    public function surveyCompilation()
+
+    public function survey()
     {
-        return $this->belongsTo(SurveyCompilation::class);
+        return $this->belongTo(Survey::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(Answer::class);
+    }
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

@@ -23,4 +23,9 @@ class Survey extends Model
     {
         return '/survey/' . $this->id;
     }
+
+    public function SurveyResponses()
+    {
+        return $this->hasMany(SurveyResponse::class);
+    }
 }

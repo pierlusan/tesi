@@ -18,24 +18,35 @@ class QuestionController extends Controller
     public function store(Survey $survey)
     {
 
-
-        $data = request()->validate([
-            'question' => 'required',
-            'answers.*.answer' => 'required'
-        ]);
-
         //dd(request()->all());
+        $data = request();
+        //dd($data);
 
-        $question = $survey->questions()->create(['question' => $data['question']]);
-        $question->answers()->createMany($data['answers']);
+
+
+
+
+        //questo va bene sia se metto la domanda a risposta aperta sia se metto quella a risposte multiple se aggiungo almeno una domanda ma se ne metto zero da errore
+
+        if($data['type'] == 'multiple_choice'){
+            $question = $survey->questions()->create(['question' => $data['question'],'type'=>$data['type']]);
+            $question->answers()->createMany($data['answers']);
+        }elseif($data['type'] == 'question_with_image'){
+            $fileName = time().$data->file('image')->getClientOriginalName();
+            $path = $data->file('image')->storeAs('images',$fileName,'public');
+            $foto = '/storage/'.$path;
+            $question = $survey->questions()->create(['question' => $data['question'],'type'=>$data['type'],'immagine' => $foto]);
+        }
+
 
         return redirect('/survey/' . $survey->id);
+
     }
 
     public function delete(Survey $survey, Question $question)
     {
 
-        $question->responses()->delete();
+        //$question->responses()->delete();
         $question->answers()->delete();
 
         $question->delete();

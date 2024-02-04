@@ -8,30 +8,45 @@
                     @csrf
 
                     @foreach($survey->questions as $key=>$question)
-                        <div>
-                            <div>{{$key+1}} : {{$question->question}}></div>
+                        <div >
+                            <div>{{$key+1}} : {{$question->question}}</div>
 
                             <div>
                                 <ul>
-                                    @if(sizeof($question->answers) == 0)
-                                        <div>Nessuna opzione inserita</div>
-                                    @else
+                                    @if($question->type == 'question_with_image')
+                                        <img src="{{ asset($question->immagine) }}">
+                                        <label for="open_ended_response_{{$key}}">
+                                            <textarea name="responses[{{$key}}][answer]"
+                                                      id="question_with_image_{{$key}}">{{ old('responses.'.$key.'.open_ended_response') }}</textarea>
+                                            <input type="hidden" name="responses[{{$key}}][question]"
+                                                   value="{{ $question->question }}">
+                                        </label>
+                                    @endif
+                                    @if($question->type == 'multiple_choice')
                                         @foreach($question->answers as $answer)
-                                            <lable for="answer_{{$answer->id}}">
+                                            <label for="answer_{{$answer->id}}">
                                                 <li>
-
                                                     <input type="radio"
-                                                           name="responses[{{ $key }}][answer_id]"
-                                                           id="answer_{{$answer->id}}"
-                                                           value="{{$answer->id}}"
-                                                           {{ (old('responses.'.$key.'.answer-id')== $answer->id) ? 'checked' : '' }}
+                                                           name="responses[{{ $key }}][answer]"
+                                                           id="answer_{{$answer->answer}}"
+                                                           value="{{$answer->answer}}"
+                                                        {{ (old('responses.'.$key.'.answer_answer')== $answer->answer) ? 'checked' : '' }}
                                                     >
                                                     {{$answer->answer}}
-                                                    <input type="hidden" name="responses[{{$key}}][question_id]" value="{{ $question->id }}">
+                                                    <input type="hidden" name="responses[{{$key}}][question]"
+                                                           value="{{ $question->question }}">
                                                 </li>
-                                            </lable>
+                                            </label>
                                         @endforeach
+                                    @elseif($question->type == 'open_ended')
+                                        <label for="open_ended_response_{{$key}}">
+                                            <textarea name="responses[{{$key}}][answer]"
+                                                      id="open_ended_response_{{$key}}">{{ old('responses.'.$key.'.open_ended_response') }}</textarea>
+                                            <input type="hidden" name="responses[{{$key}}][question]"
+                                                   value="{{ $question->question }}">
+                                        </label>
                                     @endif
+
                                 </ul>
                             </div>
                         </div>

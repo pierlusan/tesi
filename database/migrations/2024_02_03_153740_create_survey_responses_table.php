@@ -14,15 +14,23 @@ return new class extends Migration
         Schema::create('survey_responses', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('survey_compilation_id')->unsigned();
-            $table->foreign('survey_compilation_id')->references('id')->on('survey_compilations');
-
+            /*
             $table->bigInteger('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');
 
             $table->bigInteger('answer_id')->unsigned();
             $table->foreign('answer_id')->references('id')->on('answers');
+            */
 
+            $table->string('answer');
+            $table->string('question');
+
+            $table->bigInteger('survey_id')->unsigned();
+            $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');;
+
+
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->timestamps();
         });

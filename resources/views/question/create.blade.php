@@ -3,7 +3,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="backdrop-blur-300 p-6 overflow-hidden shadow-md sm:rounded-lg">
 
-                <form id="dynamicForm" action="/survey/{{$survey->id}}/questions/create" method="post">
+                <form id="dynamicForm" action="/survey/{{$survey->id}}/questions/create" method="post"  enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="question" class="block text-stone-100">Domanda<span class="font-bold text-base text-red-600">*</span></label>
@@ -11,14 +11,18 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="questionType">Tipo Domanda</label>
-                        <select name="questionType" id="questionType" onchange="toggleAnswerFields()">
+                        <label for="type">Tipo Domanda</label>
+                        <select name="type" id="type" onchange="toggleAnswerFields()">
                             <option value="multiple_choice">Risposta Multipla</option>
                             <option value="open-ended">Risposta Aperta</option>
+                            <option value="question_with_image">Domanda con immagine</option>
                         </select>
                     </div>
 
-
+                    <div id="image" class="mb-4">
+                        <label for="image">Carica un'immagine</label>
+                        <input type="file" name="image" accept="image/*">
+                    </div>
 
                     <div id="dynamicFields"></div>
 

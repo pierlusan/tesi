@@ -34,6 +34,7 @@
                                     @endif
                                 </ul>
                             </div>
+                            @if (Auth::user()->isAdmin())
                             <div class="card-footer">
                                 <form action="/survey/{{ $survey->id }}/questions/{{ $question->id }}" method="POST">
                                     @method('DELETE')
@@ -45,6 +46,7 @@
 
                                 </form>
                             </div>
+                            @endif
                         </div>
                     @endforeach
                 <br>

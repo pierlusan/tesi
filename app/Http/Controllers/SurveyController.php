@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Survey;
+use App\Models\SurveyResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class SurveyController extends Controller
 
     public function index()
     {
+        $users = User::where('approved', true)->where('is_admin',false)->get();;
 
         $user = User::where('id',auth()->user()->id)->first();
         //dd($user);
@@ -24,7 +26,7 @@ class SurveyController extends Controller
 
 
 
-        return view('survey.index',compact('surveys'));
+        return view('survey.index',compact('surveys'),['users'=> $users]);
     }
 
     public function create()
@@ -73,15 +75,39 @@ class SurveyController extends Controller
     public function takeStore(Survey $survey)
     {
         //dd(request()->all());
-        $data = request()->validate([
-            'responses.*.question_id' => 'required',
-            'responses.*.answer_id' => 'required'
-        ]);
+        $data = request();
 
 
-        $surveyCompilation = $survey->surveyCompilations()->create(['user_id'=> auth()->user()->id]);
-        $surveyCompilation->responses()->createMany($data['responses']);
+
+        foreach ($data['responses'] as $response) {
+            $surveyResponse = new SurveyResponse();
+            $surveyResponse->question = $response['question'];
+            $surveyResponse->answer = $response['answer'];
+            $surveyResponse->survey_id = $survey->id;
+            $surveyResponse->user_id = auth()->user()->id;
+            $surveyResponse->save();
+        }
+
+
         return redirect('/survey/' . $survey->id);
+
+
+
+
+    }
+
+    public function userSurveys(User $user)
+    {
+        $surveys = Survey::where('user_id',$user->id)->get();
+        return view('survey.userSurveys',compact('user'),['surveys'=>$surveys]);
+    }
+
+    public function delete(Survey $survey)
+    {
+        $survey->SurveyResponses()->delete();
+        $survey->questions()->delete();
+        $survey->delete();
+        return redirect('/dashboard');
     }
 
 

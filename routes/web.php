@@ -190,7 +190,8 @@ Route::get('/survey/take/{survey}-{slug}',[SurveyController::class,'take'])->nam
 Route::post('/survey/take/{survey}-{slug}',[SurveyController::class,'takeStore'])->name('survey.takeStore');
 Route::delete('/survey/{survey}/questions/{question}',[QuestionController::class,'delete'])->name('question.delete');
 Route::get('/survey/results/{survey}',[ResultsController::class,'take'])->name('results.take');
-
+Route::get('/survey/user/{user}',[SurveyController::class, 'userSurveys'])->name('survey.userSurvey');
+Route::delete('/survey/{survey}',[SurveyController::class,'delete'])->name('survey.delete');
 
 
 

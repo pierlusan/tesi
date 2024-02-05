@@ -1,4 +1,20 @@
+
 <x-app-layout>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('90939343e33175b6a070', {
+            cluster: 'eu'
+        });
+
+        var channel = pusher.subscribe('video-therapy');
+        channel.bind('notice', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
@@ -6,6 +22,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     @push('scripts')

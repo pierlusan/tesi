@@ -20,6 +20,8 @@
                                                       id="question_with_image_{{$key}}">{{ old('responses.'.$key.'.open_ended_response') }}</textarea>
                                             <input type="hidden" name="responses[{{$key}}][question]"
                                                    value="{{ $question->question }}">
+                                            <input type="hidden" name="responses[{{$key}}][image]"
+                                                   value="{{ $question->immagine }}">
                                         </label>
                                     @endif
                                     @if($question->type == 'multiple_choice')

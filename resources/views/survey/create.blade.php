@@ -3,7 +3,6 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8" style="max-height: 85.5vh; overflow-y: auto;">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 backdrop-blur-3xl">
-                    <h1 class="text-2xl text-stone-100 font-semibold mb-4">Crea evento personale</h1>
                     <form action="/survey/create" method="post">
                         @csrf
                         <div class="mb-4">

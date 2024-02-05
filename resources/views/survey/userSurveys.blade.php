@@ -1,9 +1,11 @@
 <x-app-layout>
     <div class="py-6">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            @if(count($surveys) > 0)
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 backdrop-blur-3xl">
-                    @if($surveys)
+
+
                         <ul class="list-group">
                             @foreach($surveys as $survey)
                                 <li>
@@ -14,11 +16,20 @@
                                             class="text-stone-400 text-xs mt-2">{{date('d/m/y H:m:s',strtotime($survey->created_at))}}</div>
 
                                         <div class="flex items-center justify-end mt-4">
+                                            @if($survey->completed)
+                                                <form action="/survey/results/{{$survey->id}}" method="GET">
+                                                    <x-primary-button>
+                                                       RISULTATI
+                                                    </x-primary-button>
+                                                </form>
+                                            @endif
+                                            @if(!$survey->completed)
                                             <form action="/survey/{{$survey->id}}" method="GET">
                                                 <x-primary-button>
-                                                    Enter
+                                                    MODIFICA
                                                 </x-primary-button>
                                             </form>
+                                            @endif
                                             <form action="/survey/{{$survey->id}} " method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -31,9 +42,16 @@
                                 </li>
                             @endforeach
                         </ul>
-                    @endif
+
                 </div>
             </div>
+            @else
+                <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
+                    <div class="p-6 backdrop-blur-3xl">
+                        Nessun questionario
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

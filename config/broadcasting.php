@@ -27,6 +27,10 @@ return [
     | each available type of connection are provided inside this array.
     |
     */
+    'options' => [
+        'cluster' => 'eu',
+        'useTLS' => true
+    ],
 
     'connections' => [
 

@@ -8,6 +8,9 @@
                         <div class="bg-stone-500 opacity-80 rounded-md shadow-md px-4 pb-4 pt-1 mt-4">
 
                             <div>DOMANDA: {{$result->question}}</div>
+                            @if($result->immagine != null)
+                                <img src="{{ asset($result->immagine) }}">
+                            @endif
                             <div>RISPOSTA: {{$result->answer}}</div>
 
                         </div>

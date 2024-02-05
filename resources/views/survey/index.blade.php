@@ -45,7 +45,7 @@
                                         <div class="text-stone-300 text-sm">{{ $survey->description }}</div>
                                         <div
                                             class="text-stone-400 text-xs mt-2">{{date('d/m/y H:m:s',strtotime($survey->created_at))}}</div>
-
+                                        @if(!$survey->completed)
                                         <div class="flex items-center justify-end mt-4">
                                             <form action="/survey/{{$survey->id}}" method="GET">
                                                 <x-primary-button>
@@ -53,6 +53,11 @@
                                                 </x-primary-button>
                                             </form>
                                         </div>
+                                        @else
+                                            <div class="flex items-center justify-end mt-4">
+                                                Questionario completato
+                                            </div>
+                                        @endif
                                     </div>
                                 </li>
                             @endforeach

@@ -58,12 +58,7 @@
                             Aggiungi domanda
                         </x-primary-button>
                     </form>
-                    <br>
-                    <form action="/survey/results/{{$survey->id}}" method="GET">
-                        <x-primary-button>
-                            Risultato
-                        </x-primary-button>
-                    </form>
+
                 @endif
             </div>
 

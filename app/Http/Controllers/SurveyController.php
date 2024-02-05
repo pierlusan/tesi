@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Events\NoticeEvent;
 use App\Models\Survey;
 use App\Models\SurveyResponse;
 use App\Models\User;
@@ -51,7 +51,10 @@ class SurveyController extends Controller
         $survey->description = $data['description'];
         $survey->user_id = $data['user_id'];
         $survey->admin_id = auth()->user()->id;
+        $survey->completed = false;
         $survey->save();
+
+        NoticeEvent::dispatch('Questionario aggiunto');
 
         //$survey = auth()->user()->surveys()->create($data);
         return redirect('/survey/' . $survey->id);
@@ -79,6 +82,7 @@ class SurveyController extends Controller
 
 
 
+
         foreach ($data['responses'] as $response) {
             $surveyResponse = new SurveyResponse();
             $surveyResponse->question = $response['question'];
@@ -86,7 +90,14 @@ class SurveyController extends Controller
             $surveyResponse->survey_id = $survey->id;
             $surveyResponse->user_id = auth()->user()->id;
             $surveyResponse->save();
+            if(array_key_exists('image',$response)){
+                $surveyResponse->immagine = $response['image'];
+                $surveyResponse->save();
+            }
         }
+
+        $survey->completed = true;
+        $survey->save();
 
 
         return redirect('/survey/' . $survey->id);

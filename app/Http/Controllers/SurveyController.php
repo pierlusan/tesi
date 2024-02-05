@@ -54,7 +54,9 @@ class SurveyController extends Controller
         $survey->completed = false;
         $survey->save();
 
-        NoticeEvent::dispatch('Questionario aggiunto');
+        $messaggio = ['utente'=> $survey->user_id, 'messaggio'=>'Hai un nuovo questionario'];
+        //dd($messaggio);
+        NoticeEvent::dispatch($messaggio);
 
         //$survey = auth()->user()->surveys()->create($data);
         return redirect('/survey/' . $survey->id);

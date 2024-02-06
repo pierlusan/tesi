@@ -36,6 +36,8 @@ class QuestionController extends Controller
             $path = $data->file('image')->storeAs('images',$fileName,'public');
             $foto = '/storage/'.$path;
             $question = $survey->questions()->create(['question' => $data['question'],'type'=>$data['type'],'immagine' => $foto]);
+        }elseif ($data['type'] == 'open-ended'){
+            $question = $survey->questions()->create(['question' => $data['question'],'type'=>$data['type']]);
         }
 
 

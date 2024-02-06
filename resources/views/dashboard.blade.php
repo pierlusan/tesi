@@ -1,10 +1,5 @@
 
 <x-app-layout>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <div id="user-info" data-user="{{ json_encode(auth()->user()) }}"></div>
-    <script></script>
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
             <div class="backdrop-blur-3xl overflow-hidden shadow-md sm:rounded-lg">
@@ -109,30 +104,6 @@
         </script>
 
     @endpush
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <script>
-
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('90939343e33175b6a070', {
-            cluster: 'eu'
-        });
-
-        var channel = pusher.subscribe('video-therapy');
-        channel.bind('notice', function(data) {
-            var userData = JSON.parse(document.getElementById('user-info').dataset.user);
-            if(data['message']['utente'] === userData['id'].toString()){
-
-                //alert(JSON.stringify(data['message']['messaggio']));
-                iziToast.show({
-                    title: 'Hey',
-                    message: JSON.stringify(data['message']['messaggio'])
-                });
-            }
-
-        });
-    </script>
 </x-app-layout>

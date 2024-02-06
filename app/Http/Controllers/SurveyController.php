@@ -97,7 +97,12 @@ class SurveyController extends Controller
                 $surveyResponse->save();
             }
         }
+        $user = User::where('id', auth()->user()->id)->first();
+        //dd($user);
+        $messaggio = ['utente'=> '2' , 'messaggio'=>'L\'utente '.$user->name.' ha completato un questionario'];
+        //dd($messaggio);
 
+        NoticeEvent::dispatch($messaggio);
         $survey->completed = true;
         $survey->save();
 
@@ -120,7 +125,7 @@ class SurveyController extends Controller
         $survey->SurveyResponses()->delete();
         $survey->questions()->delete();
         $survey->delete();
-        return redirect('/dashboard');
+        return redirect()->back();
     }
 
 

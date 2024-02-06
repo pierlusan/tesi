@@ -24,6 +24,7 @@
                                                    value="{{ $question->immagine }}">
                                         </label>
                                     @endif
+
                                     @if($question->type == 'multiple_choice')
                                         @foreach($question->answers as $answer)
                                             <label for="answer_{{$answer->id}}">
@@ -40,7 +41,7 @@
                                                 </li>
                                             </label>
                                         @endforeach
-                                    @elseif($question->type == 'open_ended')
+                                    @elseif($question->type == 'open-ended')
                                         <label for="open_ended_response_{{$key}}">
                                             <textarea name="responses[{{$key}}][answer]"
                                                       id="open_ended_response_{{$key}}">{{ old('responses.'.$key.'.open_ended_response') }}</textarea>

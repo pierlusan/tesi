@@ -18,6 +18,7 @@ export default defineConfig({
                 'resources/js/webrtc.js',
                 'resources/js/agora-rtm-sdk-1.5.1.js',
                 'resources/js/AgoraRTC_N-4.19.1.js',
+                'resources/js/notifiche.js'
             ],
             refresh: true,
         }),

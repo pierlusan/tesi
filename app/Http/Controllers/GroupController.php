@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NoticeEvent;
 use App\Models\Group;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,6 +53,11 @@ class GroupController extends Controller
         $group->save();
         $group->users()->attach(auth()->user());
         $group->users()->attach($request->input('users'));
+
+        $messaggio = ['utente'=> $request->input('users'), 'messaggio'=>'Sei stato inserito nel gruppo: '.$request->input('name')];
+        //dd($messaggio);
+
+        NoticeEvent::dispatch($messaggio);
 
         return redirect()->route('groups.show', ['group' => $group->id])->with('success', 'Gruppo creato con successo.');
     }

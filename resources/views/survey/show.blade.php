@@ -8,11 +8,14 @@
                 <br>
                 <div class="">{{date('d/m/y H:m:s',strtotime($survey->created_at))}}</div>
                 @if (!Auth::user()->isAdmin())
-                <form action="/survey/take/{{$survey->id.'-'.Str::slug($survey->title)}}" method="GET">
-                    <x-primary-button>
-                        Compila il questionario
-                    </x-primary-button>
-                </form>
+
+                    @if(!$survey->questions->isEmpty())
+                        <form action="/survey/take/{{$survey->id.'-'.Str::slug($survey->title)}}" method="GET">
+                            <x-primary-button>
+                                Compila il questionario
+                            </x-primary-button>
+                        </form>
+                    @endif
                 @endif
 
 
@@ -23,8 +26,9 @@
 
                             <div>
                                 <ul class="list-group">
-                                    @if(sizeof($question->answers) == 0)
-                                        <div class="text-danger">Nessuna opzione inserita</div>
+
+                                    @if($survey->questions->isEmpty())
+                                        <div>Nessuna opzione inserita</div>
                                     @else
                                         @foreach($question->answers as $answer)
                                             <li class=" list-group-item">

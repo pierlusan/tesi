@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enum\EventStatus;
+use App\Events\NoticeEvent;
 use App\Models\SingleEvent;
 use App\Models\User;
 use Carbon\Carbon;
@@ -61,6 +62,10 @@ class SingleEventController extends Controller
         $event->type = $request->input('type');
         $event->client_id = $request["client"];
         $event->save();
+
+        $messaggio = ['utente'=> $request["client"], 'messaggio'=>'Hai un nuovo evento singolo '.'giorno/ora: '.Carbon::parse($request->input('date'))->format('Y-m-d H:i')];
+        //dd($messaggio);
+        NoticeEvent::dispatch($messaggio);
 
         return redirect()->route('single_events.index')
             ->with('success', 'Evento creato con successo');

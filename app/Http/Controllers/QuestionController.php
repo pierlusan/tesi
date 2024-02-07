@@ -24,8 +24,6 @@ class QuestionController extends Controller
 
 
 
-
-
         //questo va bene sia se metto la domanda a risposta aperta sia se metto quella a risposte multiple se aggiungo almeno una domanda ma se ne metto zero da errore
 
         if($data['type'] == 'multiple_choice'){
